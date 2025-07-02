@@ -1,12 +1,12 @@
-<template>
+<template class="border-2 m-12">
     <input v-model="search" class="input" placeholder="Search breeds" /> 
     <Suspense>
       <template #fallback>
         <p>sorry, need load data please wait</p>
       </template>
       <template #default>
-      <div>
-        <button v-for="breed in dataRender" :key="breed">
+      <div class="flex flex-col w-40">
+        <button v-for="breed in dataRender" :key="breed" class="btn min-w-3xs" >
         {{ breed }}
         </button>
     </div>
@@ -17,13 +17,16 @@
   <script setup lang="ts">
   import { ref, onMounted, watch } from 'vue';
   import { Suspense } from 'vue';
-
+ const props = defineProps({
+  animal: String
+ })
   const search = ref('');
   const dataRender = ref<string[]>([]);
   const data = ref<string[]>([]);
   async function fetchBreeds() {
     try {
-      const res = await fetch('http://localhost:3000/breeds/dog');
+      console.log(props.animal)
+      const res = await fetch(`http://localhost:3000/breeds/${props.animal}`);
       if (!res.ok) {
         throw new Error(`Fetch failed: ${res.status}`);
       }
