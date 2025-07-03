@@ -1,28 +1,41 @@
-<template class="border-2 m-12">
-  <input v-model="search" class="input" placeholder="Search breeds" /> 
+<template>
+  <div class="border-2 border-gray-300 rounded-2xl p-8 max-w-xl mx-auto bg-white shadow-md space-y-6">
+    <input 
+      v-model="search" 
+      class="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" 
+      placeholder="Search breeds"
+    />
 
-  <Suspense>
-    <template #fallback>
-      <p>sorry, need load data please wait</p>
-    </template>
+    <Suspense>
+      <template #fallback>
+        <p class="text-center text-gray-500 italic">Sorry, loading data. Please wait...</p>
+      </template>
 
-    <template #default>
-      <div>
-        <div class="flex flex-col w-40">
+      <template #default>
+        <div class="space-y-4">
+          <div class="flex flex-wrap gap-2">
+            <button 
+              v-for="(breed, index) in dataRender" 
+              :key="breed" 
+              class="btn breedButton bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+              @click="setBreed(index)"
+            >
+              {{ breed }}
+            </button>
+          </div>
           <button 
-            v-for="(breed, index) in dataRender" 
-            :key="breed" 
-            class="btn min-w-3xs breedButton"
-            @click="setBreed(index)"
+            @click="sendBreed()" 
+            class="btn w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition duration-200"
+            id="savedBtn"
           >
-            {{ breed }}
+            Save
           </button>
         </div>
-        <button @click="sendBreed()" class="btn" id="savedBtn">save</button>
-      </div>
-    </template>
-  </Suspense>
+      </template>
+    </Suspense>
+  </div>
 </template>
+
 
   <script setup lang="ts">
   import { ref, onMounted, watch } from 'vue';
