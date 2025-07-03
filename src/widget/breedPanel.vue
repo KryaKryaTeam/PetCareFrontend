@@ -12,13 +12,13 @@
           <button 
             v-for="(breed, index) in dataRender" 
             :key="breed" 
-            class="btn min-w-3xs"
+            class="btn min-w-3xs breedButton"
             @click="setBreed(index)"
           >
             {{ breed }}
           </button>
         </div>
-        <button @click="sendBreed()" class="btn" >save</button>
+        <button @click="sendBreed()" class="btn" id="savedBtn">save</button>
       </div>
     </template>
   </Suspense>

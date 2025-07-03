@@ -78,6 +78,9 @@ importers:
       eslint-plugin-vue:
         specifier: ~10.2.0
         version: 10.2.0(eslint@9.30.0(jiti@2.4.2))(vue-eslint-parser@10.1.4(eslint@9.30.0(jiti@2.4.2)))
+      flush-promises:
+        specifier: ^1.0.2
+        version: 1.0.2
       jiti:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1680,6 +1683,9 @@ packages:
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+
+  flush-promises@1.0.2:
+    resolution: {integrity: sha512-G0sYfLQERwKz4+4iOZYQEZVpOt9zQrlItIxQAAYAWpfby3gbHrx0osCHz5RLl/XoXevXk0xoN4hDFky/VV9TrA==}
 
   follow-redirects@1.15.9:
     resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
@@ -4676,6 +4682,8 @@ snapshots:
       keyv: 4.5.4
 
   flatted@3.3.3: {}
+
+  flush-promises@1.0.2: {}
 
   follow-redirects@1.15.9(debug@4.4.1):
     optionalDependencies:
