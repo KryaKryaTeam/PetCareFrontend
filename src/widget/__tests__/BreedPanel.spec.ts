@@ -1,29 +1,36 @@
-import {describe, expect, it, beforeAll, vi, afterAll, beforeEach} from 'vitest'
+import { describe, expect, it, beforeAll, vi, afterAll, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import BreedPanel from '@/widget/breedPanel.vue'
 import flushPromises from 'flush-promises'
+
 describe("Breed Panel tests", () => {
   let wrapper: ReturnType<typeof mount>
- // hooks
+
+  // hooks
   beforeAll(() => {
     global.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(['Labrador', 'Poodle', 'Shiba Inu']),
-      } as Response)
+      }) as unknown as Promise<Response>
     )
   })
 
-  beforeEach(async() => {
-    wrapper = mount(BreedPanel, { props: { animal: 'dog' } })
+
+  beforeEach(async () => {
+    wrapper = mount(BreedPanel, {
+      props: { animal: 'dog' },
+    })
     await flushPromises()
   })
 
+
   afterAll(() => {
-    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
-  // tests
-  it('have search input exist', () => {
+
+ // tests
+  it("have search input exist", () => {
     const input = wrapper.find('input')
     expect(input.exists()).toBe(true)
   })
@@ -36,11 +43,9 @@ describe("Breed Panel tests", () => {
     expect(buttons[2].text()).toBe('Shiba Inu')
   })
 
-  it("emit can be drived", async () => {
+  it("emit can be triggered", async () => {
     const button = wrapper.find('#savedBtn')
     await button.trigger('click')
     expect(wrapper.emitted('breedFromPanel')).toBeTruthy()
   })
 })
-
-

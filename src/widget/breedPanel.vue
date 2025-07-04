@@ -19,6 +19,7 @@
               :key="breed" 
               @click="setBreed(index)"
               :class="[
+                'breedButton',
                 'px-4 py-2 rounded-lg transition duration-200',
                 'focus:outline-none',
                 'bg-gray-200 text-gray-800 hover:bg-blue-100'
