@@ -22,7 +22,8 @@
                 'breedButton',
                 'px-4 py-2 rounded-lg transition duration-200',
                 'focus:outline-none',
-                'bg-gray-200 text-gray-800 hover:bg-blue-100'
+                ' text-gray-800',
+                 savedIndex === index ? `bg-[#43e681] hover:bg-[#37b868]` : `bg-gray-200 hover:bg-blue-100`
               ]"
               :id="`btnBreed-${index}`"
             >
@@ -56,7 +57,7 @@
   const dataRender = ref<string[]>([]);
   const data = ref<string[]>([]);
   let breedSaved: string | null = ''
-  let savedIndex: number | null;
+  let savedIndex = ref<number | null >(null)
   // functions
   async function fetchBreeds() {
     try {
@@ -78,25 +79,15 @@
   }
 
   const setBreed = (index: number) => {
-    // style changes
-    const pastBtn = document.getElementById(`btnBreed-${savedIndex}`)
-    const btn = document.getElementById(`btnBreed-${index}`)
-    if(savedIndex === index && btn && pastBtn){
-      btn.style.backgroundColor = "oklch(92.8% 0.006 264.531)"
-      savedIndex = null;
-      breedSaved = null;
-      return
-    }
-    if (btn) {
-    btn.style.backgroundColor = "#43e681"
-    }
-    if(pastBtn){
-      pastBtn.style.backgroundColor = "oklch(92.8% 0.006 264.531)"
-    }
-    // set value
-    savedIndex = index
-    breedSaved = dataRender.value[index] 
-  } 
+  // set value for emit and change color by ternar
+  if (savedIndex.value === index) {
+    savedIndex.value = null
+    breedSaved = null
+  } else {
+    savedIndex.value = index
+    breedSaved = dataRender.value[index]
+  }
+}
   //  mounts
   onMounted(fetchBreeds);
 
