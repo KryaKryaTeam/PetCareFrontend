@@ -1,11 +1,13 @@
 <template>
   <div class="border-2 border-gray-300 rounded-2xl p-8 max-w-xl mx-auto bg-white shadow-md space-y-6">
+    <div class="flex item-center">
     <input 
       v-model="search" 
-      class="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" 
+      class="input w-5/6 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" 
       placeholder="Search breeds"
     />
-
+    <button  class="ml-12 rounded hover:bg-gray-100 "  @click="emitClose()" id="" ><CrossI /></button>
+  </div>
     <Suspense>
       <template #fallback>
         <p class="text-center text-gray-500 italic">Sorry, loading data. Please wait...</p>
@@ -45,14 +47,15 @@
 
 
   <script setup lang="ts">
-  import { ref, onMounted, watch } from 'vue';
+  import CrossI from '@/shared/icon/crossI.vue';
+import { ref, onMounted, watch } from 'vue';
   import { Suspense } from 'vue';
-  // data
 
+  // data
   const props = defineProps({
     animal: String
   })
-  const emit = defineEmits(['breedFromPanel'])
+  const emit = defineEmits(['breedFromPanel', "ClosePanel"])
   const search = ref('');
   const dataRender = ref<string[]>([]);
   const data = ref<string[]>([]);
@@ -76,8 +79,11 @@
 
   const sendBreed = () => {
     emit('breedFromPanel', breedSaved)
+    emit("ClosePanel", false)
   }
-
+  const emitClose = () => {
+    emit("ClosePanel", false)
+  }
   const setBreed = (index: number) => {
   // set value for emit and change color by ternar
   if (savedIndex.value === index) {

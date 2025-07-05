@@ -69,5 +69,9 @@ describe("Breed Panel tests", () => {
     expect(buttons[0].classes()).toContain('bg-gray-200')
     expect(buttons[0].classes()).not.toContain('bg-[#43e681]')
   })
-
+  it("test emit on close", async() => {
+    const button = wrapper.find('#savedBtn')
+    await button.trigger('click')
+    expect(wrapper.emitted('breedFromPanel')).toBeTruthy()
+  })
 })

@@ -1,3 +1,4 @@
+import Create from '@/pages/create.vue'
 import Main from '@/pages/main.vue'
 import Test from '@/pages/test.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/a',
       name: 'test-board',
       component: Test
+    },
+    {
+      path: '/app/create',
+      name: "create",
+      component: Create
     }
   ],
 })
