@@ -1,4 +1,7 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import AuthGoogleButton from '@/shared/ui/authGoogleButton.vue';
+
 
 </script>
 
@@ -14,5 +17,6 @@
     <p>the board for managing anything what need your pet.</p>
     <p>Eat time, helthy and more</p>
     <button>lets`go to prices</button>
+    <AuthGoogleButton />
   </main>
 </template>
