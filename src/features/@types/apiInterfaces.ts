@@ -4,3 +4,11 @@ export interface ParamOauthGoogle{
     response_type: string,
     scope: string,
 }
+export interface GoogleAuthFragment {
+  accessToken: string | null;
+  tokenType?: string | null;
+  expiresIn?: string | null;
+  scope?: string | null;
+  authUser?: string | null;
+  prompt?: string | null;
+}
