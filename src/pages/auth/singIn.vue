@@ -13,7 +13,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import useUserStore from '@/entities/User/userStore';
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
   // interfaces
   interface Form{
     username: string,
@@ -24,15 +26,28 @@ import { reactive } from 'vue';
     username: '',
     password: '',
   })
-
+  const user = useUserStore()
+  const router = useRouter()
   // functions
-  async function postForm() {
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login/self`, {
-      method: "POST",
-      body: JSON.stringify(form),
-       headers: {
+async function postForm() {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login/self`, {
+      method: 'POST',
+      headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(form),
     })
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const data = await response.json()
+    await user.newValueAccessToken(data.authorization)
+    router.push('/app/board')
+  } catch (error) {
+    console.error('Sign-up error:', error)
   }
+}
 </script>
