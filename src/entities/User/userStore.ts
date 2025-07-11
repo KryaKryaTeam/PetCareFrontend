@@ -8,15 +8,18 @@ const useUserStore = defineStore('user', () => {
     accessToken.value = newValue
   }
   async function refresh(){
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/refresh`.{
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/refresh`, {
       method: "POST",
       body: JSON.stringify({
-        "accessToken": `${accessToken}`
-      })
+        "accessToken": `${accessToken.value}`
+      }),
+       headers: {
+        'Content-Type': 'application/json',
+      },
     })
   }
   return {
-    accessToken, newValueAccessToken
+    accessToken, newValueAccessToken, refresh
   }
 })
 
