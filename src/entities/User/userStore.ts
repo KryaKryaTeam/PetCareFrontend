@@ -7,6 +7,14 @@ const useUserStore = defineStore('user', () => {
   function newValueAccessToken(newValue: any){
     accessToken.value = newValue
   }
+  async function refresh(){
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/refresh`.{
+      method: "POST",
+      body: JSON.stringify({
+        "accessToken": `${accessToken}`
+      })
+    })
+  }
   return {
     accessToken, newValueAccessToken
   }

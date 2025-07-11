@@ -17,6 +17,7 @@
 <script lang="ts" setup>
 import useUserStore from '@/entities/User/userStore'
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 // Define form type
 interface Form {
   username: string
@@ -33,7 +34,7 @@ const form = reactive<Form>({
 
 // Access Pinia store
 const user = useUserStore()
-
+const router = useRouter()
 // Handle form submission
 async function postForm() {
   try {
@@ -52,10 +53,8 @@ async function postForm() {
     }
 
     const data = await response.json()
-    console.log('Server response:', data)
-    user.newValueAccessToken(data.authorization)
-    console.log('Stored accessToken:', user.accessToken)
-
+    await user.newValueAccessToken(data.authorization)
+    router.push('/app/board')
   } catch (error) {
     console.error('Sign-up error:', error)
   }
