@@ -16,6 +16,12 @@
 import useUserStore from '@/entities/User/userStore';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import * as z from "zod";
+
+  const schema  = z.object({
+    username: z.string().min(5),
+    password: z.string().min(6)
+  })
   // interfaces
   interface Form{
     username: string,
@@ -38,16 +44,17 @@ async function postForm() {
       },
       body: JSON.stringify(form),
     })
-
+    if(response.status == 401){
+      await user.refresh()
+    }
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
-
     const data = await response.json()
     await user.newValueAccessToken(data.authorization)
     router.push('/app/board')
   } catch (error) {
-    console.error('Sign-up error:', error)
+    console.log(error)
   }
 }
 </script>
