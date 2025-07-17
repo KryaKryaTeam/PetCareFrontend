@@ -4,6 +4,7 @@ import Main from '@/pages/main.vue'
 import SingUp from '@/pages/auth/singUp.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import SingIn from '@/pages/auth/singIn.vue'
+import Test from '@/pages/test.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,10 @@ const router = createRouter({
       path: "/app/auth/singin",
       name: 'singin',
       component: SingIn
+    },
+    {
+      path: "/t",
+      component: Test
     }
   ],
 })
