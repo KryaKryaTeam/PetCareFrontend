@@ -1,0 +1,5 @@
+pnpm format
+pnpm lint:oxlint
+pnpm test:unit
+pnpm test:e2e
+pnpm build
