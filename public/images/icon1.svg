@@ -1,0 +1,15 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M33.3333 8.33337V25" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M50 8.33337V25" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M66.6667 8.33337V25" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M66.6667 16.6666H75.0001C77.2102 16.6666 79.3298 17.5446 80.8926 19.1074C82.4554 20.6702 83.3334 22.7898 83.3334 25V33.3333" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M83.3333 50V58.3333" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M83.3333 75V83.3333C83.3333 85.5435 82.4553 87.6631 80.8925 89.2259C79.3297 90.7887 77.2101 91.6667 74.9999 91.6667H70.8333" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54.1666 91.6666H45.8333" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29.1667 91.6667H25.0001C22.7899 91.6667 20.6703 90.7887 19.1075 89.2259C17.5447 87.6631 16.6667 85.5435 16.6667 83.3333V75" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.6667 58.3333V50" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.6667 33.3333V25C16.6667 22.7898 17.5447 20.6702 19.1075 19.1074C20.6703 17.5446 22.7899 16.6666 25.0001 16.6666H33.3334" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33.3333 41.6666H58.3333" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33.3333 58.3334H66.6666" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33.3333 75H54.1666" stroke="#209AA6" stroke-width="7.33" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
