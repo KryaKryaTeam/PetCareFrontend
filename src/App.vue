@@ -4,6 +4,7 @@ import HeaderListing from './widget/headerListing.vue'
 </script>
 
 <template>
+  <HeaderListing />
   <RouterView />
 </template>
 

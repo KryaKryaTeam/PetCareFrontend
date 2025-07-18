@@ -1,3 +1,4 @@
-pnpm format
-pnpm test:unit
-
+npm run format
+npm run test:unit
+npm run build
+npm run test:e2e
