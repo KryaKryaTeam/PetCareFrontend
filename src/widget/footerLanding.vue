@@ -9,8 +9,8 @@ import ContainerComp from "@/shared/components/containerComp.vue"
             <div class="row">
                 <span class="span"
                     ><RouterLink to="/contact">Contact</RouterLink> |
-                    <RouterLink to="/privacy">Privacy Policy</RouterLink> |
-                    <RouterLink to="/terms">Terms Of Use</RouterLink></span
+                    <RouterLink to="/listing/privacy">Privacy Policy</RouterLink> |
+                    <RouterLink to="/listing/terms">Terms Of Use</RouterLink></span
                 >
                 <a href="https://github.com/KryaKryaTeam"><p class="team">Krya Krya Team © 2025</p></a>
             </div>
