@@ -7,6 +7,8 @@ import SingUp from "@/pages/auth/singUp.vue"
 import { createRouter, createWebHistory } from "vue-router"
 import SingIn from "@/pages/auth/singIn.vue"
 import Test from "@/pages/test.vue"
+import MainToListing from "@/pages/redirects/mainToListing.vue"
+import ListingLayout from "@/pages/layouts/ListingLayout.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,22 +25,34 @@ const router = createRouter({
         {
             path: "/",
             name: "main",
-            component: LandingPage,
+            component: MainToListing,
         },
         {
-            path: "/listing/pricing",
-            name: "pricing",
-            component: LandingPage,
-        },
-        {
-            path: "/listing/privacy",
-            name: "privacy",
-            component: PrivacyPage,
-        },
-        {
-            path: "/listing/terms",
-            name: "terms",
-            component: TermsPage,
+            path: "/listing",
+            name: "listing",
+            component: ListingLayout,
+            children: [
+                {
+                    path: "",
+                    name: "main",
+                    component: LandingPage,
+                },
+                {
+                    path: "pricing",
+                    name: "pricing",
+                    component: LandingPage,
+                },
+                {
+                    path: "privacy",
+                    name: "privacy",
+                    component: PrivacyPage,
+                },
+                {
+                    path: "terms",
+                    name: "terms",
+                    component: TermsPage,
+                },
+            ],
         },
         {
             path: "/app/create",
