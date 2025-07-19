@@ -1,4 +1,1 @@
-<template>
- dsaasjsad
-</template>
-
+<template>dsaasjsad</template>

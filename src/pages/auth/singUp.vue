@@ -5,11 +5,40 @@
       <form @submit.prevent="postForm" class="space-y-[30px]">
         <input v-model="form.username" placeholder="Username" class="input w-full rounded-[10px]" />
         <input v-model="form.email" placeholder="Email" class="input w-full rounded-[10px]" />
-        <input v-model="form.password" type="password" placeholder="Password" class="input w-full rounded-[10px]" />
-        <input v-model="form.repeat" type="password" placeholder="Repeat please" class="input w-full rounded-[10px]" />
-        <input type="checkbox" id="checkbox" v-model="form.checked" class=" border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"/>
-        <label for="checkbox" id="checkbox" class="pl-4 ">I agree to the <router-link to="/listing/term-of-use"><u class="font-semibold">Term of Use</u></router-link> and <router-link to="/listing/privacy-policy"><u class="font-semibold">Privacy Policy.</u></router-link></label>
-        <button type="submit" id="subbtn" class=" text-[#FFFFFF] btn bg-[#29B4C2] w-full rounded hover:bg-[#209AA6] mt-2 rounded-[10px]" :disabled="!isValid">
+        <input
+          v-model="form.password"
+          type="password"
+          placeholder="Password"
+          class="input w-full rounded-[10px]"
+        />
+        <input
+          v-model="form.repeat"
+          type="password"
+          placeholder="Repeat please"
+          class="input w-full rounded-[10px]"
+        />
+        <input
+          type="checkbox"
+          id="checkbox"
+          v-model="form.checked"
+          class="border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"
+        />
+        <label for="checkbox" id="checkbox" class="pl-4"
+          >I agree to the
+          <router-link to="/listing/term-of-use"
+            ><u class="font-semibold">Term of Use</u></router-link
+          >
+          and
+          <router-link to="/listing/privacy-policy"
+            ><u class="font-semibold">Privacy Policy.</u></router-link
+          ></label
+        >
+        <button
+          type="submit"
+          id="subbtn"
+          class="text-[#FFFFFF] btn bg-[#29B4C2] w-full rounded hover:bg-[#209AA6] mt-2 rounded-[10px]"
+          :disabled="!isValid"
+        >
           Sign Up
         </button>
       </form>
@@ -21,19 +50,20 @@
 import useUserStore from '@/entities/User/userStore'
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import {z} from 'zod'
+import { z } from 'zod'
 
- // eslint-disable-next-line @typescript-eslint/no-unused-vars
- const formSchema = z.object({
-  username: z.string().min(3, 'Username is too short'),
-  email: z.string().email('Invalid email'),
-  password: z.string().min(6, 'Password too short'),
-  repeat: z.string(),
-  checked: z.literal(false),
-}).refine((data) => data.password === data.repeat, {
-  message: 'Passwords do not match',
-  path: ['repeat'],
-})
+const formSchema = z
+  .object({
+    username: z.string().min(3, 'Username is too short'),
+    email: z.string().email('Invalid email'),
+    password: z.string().min(6, 'Password too short'),
+    repeat: z.string(),
+    checked: z.literal(false),
+  })
+  .refine((data) => data.password === data.repeat, {
+    message: 'Passwords do not match',
+    path: ['repeat'],
+  })
 // Define form type
 type Form = z.infer<typeof formSchema>
 // Reactive form object
@@ -76,18 +106,16 @@ async function postForm() {
   } catch (error) {
     console.error('Sign-up error:', error)
   }
-
 }
-
 </script>
 <style lang="css" scoped>
-  #subbtn:disabled{
+#subbtn:disabled {
   background-color: oklch(87.2% 0.01 258.338);
-  color: #FFF;
+  color: #fff;
   cursor: not-allowed;
   opacity: 0.7;
-  }
-  input[type="checkbox"] {
+}
+input[type='checkbox'] {
   appearance: none;
   background-color: #fff;
   margin: 0;

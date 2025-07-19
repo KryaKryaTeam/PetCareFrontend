@@ -3,19 +3,19 @@ import { mount } from '@vue/test-utils'
 import BreedPanel from '@/widget/breedPanel.vue'
 import flushPromises from 'flush-promises'
 
-describe("Breed Panel tests", () => {
+describe('Breed Panel tests', () => {
   let wrapper: ReturnType<typeof mount>
 
   // hooks
   beforeAll(() => {
-    global.fetch = vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(['Labrador', 'Poodle', 'Shiba Inu']),
-      }) as unknown as Promise<Response>
+    global.fetch = vi.fn(
+      () =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(['Labrador', 'Poodle', 'Shiba Inu']),
+        }) as unknown as Promise<Response>,
     )
   })
-
 
   beforeEach(async () => {
     wrapper = mount(BreedPanel, {
@@ -24,18 +24,17 @@ describe("Breed Panel tests", () => {
     await flushPromises()
   })
 
-
   afterAll(() => {
     vi.restoreAllMocks()
   })
 
- // tests
-  it("have search input exist", () => {
+  // tests
+  it('have search input exist', () => {
     const input = wrapper.find('input')
     expect(input.exists()).toBe(true)
   })
 
-  it("have button exist and render by resolve array from server", () => {
+  it('have button exist and render by resolve array from server', () => {
     const buttons = wrapper.findAll('.breedButton')
     expect(buttons).toHaveLength(3)
     expect(buttons[0].text()).toBe('Labrador')
@@ -43,7 +42,7 @@ describe("Breed Panel tests", () => {
     expect(buttons[2].text()).toBe('Shiba Inu')
   })
 
-  it("emit can be triggered", async () => {
+  it('emit can be triggered', async () => {
     const button = wrapper.find('#savedBtn')
     await button.trigger('click')
     expect(wrapper.emitted('breedFromPanel')).toBeTruthy()
@@ -52,7 +51,7 @@ describe("Breed Panel tests", () => {
     const buttons = wrapper.findAll('.breedButton')
 
     // Initially no button selected
-    buttons.forEach(btn => {
+    buttons.forEach((btn) => {
       expect(btn.classes()).toContain('bg-gray-200')
       expect(btn.classes()).not.toContain('bg-[#43e681]')
     })
@@ -69,7 +68,7 @@ describe("Breed Panel tests", () => {
     expect(buttons[0].classes()).toContain('bg-gray-200')
     expect(buttons[0].classes()).not.toContain('bg-[#43e681]')
   })
-  it("test emit on close", async() => {
+  it('test emit on close', async () => {
     const button = wrapper.find('#savedBtn')
     await button.trigger('click')
     expect(wrapper.emitted('breedFromPanel')).toBeTruthy()
