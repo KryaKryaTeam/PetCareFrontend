@@ -100,161 +100,161 @@ import FooterListing from "@/widget/footerListing.vue"
 
 <style lang="scss" scoped>
 .hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 90vh;
+  .content {
+    width: 50%;
+    height: auto;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 90vh;
-    .content {
-        width: 50%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        row-gap: 30px;
-        color: #1f1f1f;
-        .btnContent {
-            width: 250px;
-        }
-        .title {
-            font-size: 50px;
-            font-weight: 500;
-            font-family: "Montserrat";
-            line-height: 150%;
-            .bold {
-                font-weight: 800;
-            }
-        }
-        .subtitle {
-            font-size: 16px;
-            font-weight: 400;
-            font-family: "Inter";
-            line-height: 170%;
-            letter-spacing: 10%;
-            color: #1f1f1f;
-        }
+    flex-direction: column;
+    row-gap: 30px;
+    color: #1f1f1f;
+    .btnContent {
+      width: 250px;
     }
-    .img {
-        height: 90%;
+    .title {
+      font-size: 50px;
+      font-weight: 500;
+      font-family: 'Montserrat';
+      line-height: 150%;
+      .bold {
+        font-weight: 800;
+      }
     }
+    .subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: 'Inter';
+      line-height: 170%;
+      letter-spacing: 10%;
+      color: #1f1f1f;
+    }
+  }
+  .img {
+    height: 90%;
+  }
 }
 
 .title {
-    font-family: "Montserrat";
-    font-size: 36px;
-    font-weight: 700;
-    color: #1f1f1f;
+  font-family: 'Montserrat';
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f1f1f;
 }
 
 .feature1 {
-    width: 100%;
-    height: max-content;
-    display: flex;
-    row-gap: 50px;
-    flex-direction: column;
-    margin-top: 100px;
-    .row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        column-gap: 20px;
-    }
-}
-
-.feature2 {
-    margin-top: 100px;
-    .row {
-        margin-top: 50px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        column-gap: 20px;
-        row-gap: 30px;
-    }
-}
-.feature3 {
-    margin-top: 100px;
-    .row {
-        margin-top: 50px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        column-gap: 20px;
-        row-gap: 30px;
-    }
-}
-
-.important {
-    margin-top: 100px;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  row-gap: 50px;
+  flex-direction: column;
+  margin-top: 100px;
+  .row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    .content {
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        row-gap: 30px;
-        .text {
-            line-height: 200%;
-            letter-spacing: 10%;
-            color: #514f4d;
-            font-size: 20px;
-            font-family: "Inter";
-            font-weight: 400;
-            .bold {
-                color: #1f1f1f;
-                font-weight: 800;
-            }
-        }
-    }
-    .image {
-        width: 50%;
-        border-radius: 15px;
-    }
+    column-gap: 20px;
+  }
 }
-.reviews {
-    margin-top: 100px;
-    .row {
-        margin-top: 50px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-    }
-}
-.action {
-    margin-top: 100px;
-    margin-bottom: 100px;
+
+.feature2 {
+  margin-top: 100px;
+  .row {
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    .content {
-        height: 100%;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    justify-content: center;
+    column-gap: 20px;
+    row-gap: 30px;
+  }
+}
+.feature3 {
+  margin-top: 100px;
+  .row {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    row-gap: 30px;
+  }
+}
 
-        row-gap: 30px;
-        .text {
-            font-family: "Inter";
-            font-weight: 400;
-            font-size: 20px;
-            color: #514f4d;
-            line-height: 200%;
-            letter-spacing: 10%;
-        }
-        .btn {
-            width: 250px;
-        }
+.important {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .content {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    .text {
+      line-height: 200%;
+      letter-spacing: 10%;
+      color: #514f4d;
+      font-size: 20px;
+      font-family: 'Inter';
+      font-weight: 400;
+      .bold {
+        color: #1f1f1f;
+        font-weight: 800;
+      }
     }
-    .image {
-        width: 50%;
+  }
+  .image {
+    width: 50%;
+    border-radius: 15px;
+  }
+}
+.reviews {
+  margin-top: 100px;
+  .row {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+.action {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .content {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    row-gap: 30px;
+    .text {
+      font-family: 'Inter';
+      font-weight: 400;
+      font-size: 20px;
+      color: #514f4d;
+      line-height: 200%;
+      letter-spacing: 10%;
     }
+    .btn {
+      width: 250px;
+    }
+  }
+  .image {
+    width: 50%;
+  }
 }
 </style>
