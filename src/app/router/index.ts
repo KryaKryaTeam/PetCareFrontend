@@ -6,7 +6,6 @@ import { createRouter, createWebHistory } from "vue-router"
 import SingIn from "@/pages/auth/singIn.vue"
 import Test from "@/pages/test.vue"
 import PrivacyPage from "@/pages/landing/privacyPage.vue"
-import TermsPage from "@/pages/landing/termspage.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,11 +33,6 @@ const router = createRouter({
             path: "/listing/privacy",
             name: "privacy",
             component: PrivacyPage,
-        },
-        {
-            path: "/listing/terms",
-            name: "terms",
-            component: TermsPage,
         },
         {
             path: "/app/create",

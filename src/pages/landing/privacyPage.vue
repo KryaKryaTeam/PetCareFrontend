@@ -1,6 +1,5 @@
 <script setup>
 import ContainerComp from "@/shared/components/containerComp.vue"
-import FooterListing from "@/widget/footerListing.vue"
 import HeaderListing from "@/widget/headerListing.vue"
 </script>
 <template>
@@ -174,7 +173,6 @@ import HeaderListing from "@/widget/headerListing.vue"
             </p>
         </div>
     </ContainerComp>
-    <FooterListing />
 </template>
 
 <style lang="scss" scoped>
