@@ -6,7 +6,7 @@ import Card2 from "@/shared/landing/Card2.vue"
 import Button from "@/widget/ui/button.vue"
 import Card3 from "@/shared/landing/Card3.vue"
 import Review from "@/shared/landing/Review.vue"
-import FooterLanding from "@/widget/footerLanding.vue"
+import FooterListing from "@/widget/footerListing.vue"
 </script>
 
 <template>
@@ -95,7 +95,7 @@ import FooterLanding from "@/widget/footerLanding.vue"
             <img class="image" src="/images/image4.png" />
         </section>
     </ContainerComp>
-    <FooterLanding />
+    <FooterListing />
 </template>
 
 <style lang="scss" scoped>
