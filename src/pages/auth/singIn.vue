@@ -101,7 +101,13 @@ async function postForm() {
                     required
                 />
                 <Button :disabled="!isValid" :full-width="true" type="submit">Sign In</Button>
-                <GoogleButtonAuth />
+                <GoogleButtonAuth
+                    @error="
+                        (message) => {
+                            error = message
+                        }
+                    "
+                />
 
                 <p class="error" v-if="error.length > 0">{{ error }}</p>
 
