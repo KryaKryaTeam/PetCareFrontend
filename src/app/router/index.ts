@@ -24,8 +24,8 @@ const router = createRouter({
     },
     routes: [
         {
-            path: "",
-            name: "main",
+            path: "/",
+            name: "redirect",
             component: MainToListing,
         },
         {
