@@ -9,6 +9,7 @@ import SingIn from "@/pages/auth/singIn.vue"
 import Test from "@/pages/test.vue"
 import MainToListing from "@/pages/redirects/mainToListing.vue"
 import ListingLayout from "@/pages/layouts/ListingLayout.vue"
+import AuthLayout from "@/pages/layouts/AuthLayout.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +24,7 @@ const router = createRouter({
     },
     routes: [
         {
-            path: "/",
+            path: "",
             name: "main",
             component: MainToListing,
         },
@@ -55,6 +56,23 @@ const router = createRouter({
             ],
         },
         {
+            path: "/app/auth",
+            component: AuthLayout,
+            name: "auth",
+            children: [
+                {
+                    path: "singup",
+                    name: "singup",
+                    component: SingUp,
+                },
+                {
+                    path: "singin",
+                    name: "singin",
+                    component: SingIn,
+                },
+            ],
+        },
+        {
             path: "/app/create",
             name: "create",
             component: Create,
@@ -63,16 +81,6 @@ const router = createRouter({
             path: "/app/board",
             name: "board",
             component: Board,
-        },
-        {
-            path: "/app/auth/singup",
-            name: "singup",
-            component: SingUp,
-        },
-        {
-            path: "/app/auth/singin",
-            name: "singin",
-            component: SingIn,
         },
         {
             path: "/t",
