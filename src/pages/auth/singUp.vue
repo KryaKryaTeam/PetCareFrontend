@@ -2,8 +2,8 @@
 import useUserStore from "@/entities/User/userStore"
 import GoogleButtonAuth from "@/widget/googleButtonAuth.vue"
 import Button from "@/widget/ui/button.vue"
-import CheckMask from "@/widget/ui/checkMask.vue"
-import Input from "@/widget/ui/input.vue"
+import CheckMask from "@/widget/ui/forms/checkMask.vue"
+import Input from "@/widget/ui/forms/input.vue"
 import { ref } from "vue"
 import { computed, reactive } from "vue"
 import { useRouter } from "vue-router"
@@ -99,6 +99,8 @@ async function postForm() {
                     placeholder="Username"
                     :is-error="errors.names.includes('username')"
                     :error-message="errors.messages.find((a) => a.name == 'username')?.message"
+                    name="username"
+                    autocomplete="off"
                     required
                 />
                 <Input
@@ -106,6 +108,8 @@ async function postForm() {
                     placeholder="Email"
                     :is-error="errors.names.includes('email')"
                     :error-message="errors.messages.find((a) => a.name == 'email')?.message"
+                    name="email"
+                    autocomplete="off"
                     required
                 />
                 <Input
@@ -114,6 +118,7 @@ async function postForm() {
                     :is-error="errors.names.includes('password')"
                     :error-message="errors.messages.find((a) => a.name == 'password')?.message"
                     placeholder="Password"
+                    name="password"
                     required
                 />
                 <Input
@@ -122,6 +127,7 @@ async function postForm() {
                     :is-error="errors.names.includes('repeat')"
                     :error-message="errors.messages.find((a) => a.name == 'repeat')?.message"
                     placeholder="Repeat please"
+                    name="repeat"
                     required
                 />
 

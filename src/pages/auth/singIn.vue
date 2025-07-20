@@ -2,7 +2,7 @@
 import useUserStore from "@/entities/User/userStore"
 import GoogleButtonAuth from "@/widget/googleButtonAuth.vue"
 import Button from "@/widget/ui/button.vue"
-import Input from "@/widget/ui/input.vue"
+import Input from "@/widget/ui/forms/input.vue"
 import { computed, reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import * as z from "zod"
@@ -87,6 +87,8 @@ async function postForm() {
                     placeholder="Username"
                     :is-error="errors.names.includes('username')"
                     :error-message="errors.messages.find((a) => a.name == 'username')?.message"
+                    name="username"
+                    autocomplete="off"
                     required
                 />
                 <Input
@@ -95,6 +97,7 @@ async function postForm() {
                     placeholder="Password"
                     :is-error="errors.names.includes('password')"
                     :error-message="errors.messages.find((a) => a.name == 'password')?.message"
+                    name="password"
                     required
                 />
                 <Button :disabled="!isValid" :full-width="true" type="submit">Sign In</Button>
