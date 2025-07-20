@@ -147,7 +147,13 @@ async function postForm() {
                 </label>
 
                 <Button :disabled="!isValid" id="subbtn" type="submit" :full-width="true">Sign up</Button>
-                <GoogleButtonAuth />
+                <GoogleButtonAuth
+                    @error="
+                        (message) => {
+                            error = message
+                        }
+                    "
+                />
 
                 <p class="error" v-if="error.length > 0">{{ error }}</p>
 
