@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, useAttrs } from "vue"
 
 const { isError, modelValue, errorMessage, type } = defineProps(["isError", "modelValue", "errorMessage", "type"])

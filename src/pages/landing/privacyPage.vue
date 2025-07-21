@@ -1,8 +1,4 @@
-<script setup>
-import ContainerComp from "@/shared/components/containerComp.vue"
-import FooterListing from "@/widget/footerListing.vue"
-import HeaderListing from "@/widget/headerListing.vue"
-</script>
+
 <template>
     <div class="box">
         <h1>Privacy Policy for PetCare</h1>
