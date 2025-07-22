@@ -1,7 +1,7 @@
-<script setup lang="ts">
-import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
+<script setup>
+  import PetCard from '@/widget/petCard.vue';
 </script>
 
 <template>
-  <GoogleButtonAuth />
+  <PetCard name="alex" imgLink="/images/testimg.png"/>
 </template>
