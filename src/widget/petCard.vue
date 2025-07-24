@@ -1,17 +1,16 @@
 <template>
   <div class="main">
-<div class="container">
-  <button class="action-btn" @click="router.push(`/app/edit/${id}`)">
-    <img src="/images/pen-icon.svg" class="icon" />
-    <span class="text">Edit</span>
-  </button>
+    <div class="container">
+      <button class="action-btn" @click="router.push(`/app/edit/${id}`)">
+        <img src="/images/pen-icon.svg" class="icon" />
+        <span class="text">Edit</span>
+      </button>
 
-  <button class="action-btn">
-    <img src="/images/backet-icon.svg" class="icon" />
-    <span class="text">Delete</span>
-  </button>
-</div>
-
+      <button class="action-btn">
+        <img src="/images/backet-icon.svg" class="icon" />
+        <span class="text">Delete</span>
+      </button>
+    </div>
 
     <img :src="props.imgLink" :alt="props.name" class="img" />
 
@@ -22,34 +21,32 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const props = defineProps<{
-  id: number,
-  name: string,
+  id: number
+  name: string
   imgLink: string
 }>()
 </script>
 <style lang="css" scoped>
 .main {
   display: flex;
-  flex-direction: column;       /* Vertical stacking */
-  align-items: center;          /* Center horizontally */
-  justify-content: flex-start;  /* Top align children */
+  flex-direction: column; /* Vertical stacking */
+  align-items: center; /* Center horizontally */
+  justify-content: flex-start; /* Top align children */
 
   width: 527px;
   height: 510px;
 
-  padding: 40px 88px;           /* Top/Bottom: 40px, Left/Right: 88px */
-  gap: 25px;                    /* 25px space between children */
+  padding: 40px 88px; /* Top/Bottom: 40px, Left/Right: 88px */
+  gap: 25px; /* 25px space between children */
 
   border: 2px solid #1a7d87;
   border-radius: 15px;
 
-  box-sizing: border-box;       /* Ensures padding stays within size */
-
+  box-sizing: border-box; /* Ensures padding stays within size */
 }
 
 .img {
@@ -58,8 +55,6 @@ const props = defineProps<{
   margin: 25px 0;
 }
 
-
-
 #text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -67,8 +62,6 @@ const props = defineProps<{
   color: #1f1f1f;
   text-align: center;
 }
-
-
 
 button {
   background: none;
@@ -87,7 +80,7 @@ button {
 .container {
   display: flex;
   flex-direction: row;
-  align-items: center;       /* vertical center of buttons */
+  align-items: center; /* vertical center of buttons */
   justify-content: center;
   width: 447px;
   gap: 258px;
@@ -97,16 +90,16 @@ button {
 
 .action-btn {
   display: flex;
-  align-items: center;      /* vertical center icon + text */
+  align-items: center; /* vertical center icon + text */
   background: none;
   border: none;
   cursor: pointer;
-  gap: 8px;                 /* space between icon and text */
+  gap: 8px; /* space between icon and text */
   padding: 0;
 }
 
 .icon {
-  width: 30px;              /* match Figma icon size */
+  width: 30px; /* match Figma icon size */
   height: 30px;
 }
 
@@ -117,6 +110,4 @@ button {
   color: #1f1f1f;
   line-height: 170%;
 }
-
-
 </style>
