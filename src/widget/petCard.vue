@@ -1,41 +1,122 @@
 <template>
   <div class="main">
-  <button class="invisible">
-    <div>
-      <div class="controlers">
-        <span></span>
-        <span></span>
-      </div>
-      <div class="img">
-        <img :src="props.imgLink" :alt="props.name" />
-      </div>
-      <div><b class="text">{{ props.name }}</b></div>
-    </div>
+<div class="container">
+  <button class="action-btn" @click="router.push(`/app/edit/${id}`)">
+    <img src="/images/pen-icon.svg" class="icon" />
+    <span class="text">Edit</span>
   </button>
+
+  <button class="action-btn">
+    <img src="/images/backet-icon.svg" class="icon" />
+    <span class="text">Delete</span>
+  </button>
+</div>
+
+
+    <img :src="props.imgLink" :alt="props.name" class="img" />
+
+    <div id="text">
+      {{ props.name }}
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { useRouter } from 'vue-router';
+
+
+const router = useRouter()
 const props = defineProps<{
-  name: string
+  id: number,
+  name: string,
   imgLink: string
 }>()
 </script>
 <style lang="css" scoped>
-  .invisible{
-    background: none;
-    border: none;
-    outline: none;
-  }
-  .text{
-    font-family: "Montserrat";
-    font-weight: 600;
-    letter-spacing: 5%;
-    font-size: 25px;
-    color: #1F1F1F;
-  }
-  .main{
-    display: flex;
-    border: solid 2px #1A7D87;
-  }
+.main {
+  display: flex;
+  flex-direction: column;       /* Vertical stacking */
+  align-items: center;          /* Center horizontally */
+  justify-content: flex-start;  /* Top align children */
+
+  width: 527px;
+  height: 510px;
+
+  padding: 40px 88px;           /* Top/Bottom: 40px, Left/Right: 88px */
+  gap: 25px;                    /* 25px space between children */
+
+  border: 2px solid #1a7d87;
+  border-radius: 15px;
+
+  box-sizing: border-box;       /* Ensures padding stays within size */
+
+}
+
+.img {
+  width: 70%;
+  height: auto;
+  margin: 25px 0;
+}
+
+
+
+#text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: #1f1f1f;
+  text-align: center;
+}
+
+
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#img-div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;       /* vertical center of buttons */
+  justify-content: center;
+  width: 447px;
+  gap: 258px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;      /* vertical center icon + text */
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 8px;                 /* space between icon and text */
+  padding: 0;
+}
+
+.icon {
+  width: 30px;              /* match Figma icon size */
+  height: 30px;
+}
+
+.text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #1f1f1f;
+  line-height: 170%;
+}
+
+
 </style>

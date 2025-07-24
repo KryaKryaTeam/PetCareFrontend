@@ -1,42 +1,42 @@
 <template>
-    <GoogleLogin :callback="callback" />
-    <!-- <button class="googleAuthBtn">
+  <GoogleLogin :callback="callback" />
+  <!-- <button class="googleAuthBtn">
             <img src="/images/google-logo.svg" />
             <p>Sign in with Google</p>
         </button>
     </GoogleLogin> -->
 </template>
 <script setup lang="ts">
-import useUserStore from "@/entities/User/userStore"
-import { useRouter } from "vue-router"
-import type { CallbackTypes } from "vue3-google-login"
+import useUserStore from '@/entities/User/userStore'
+import { useRouter } from 'vue-router'
+import type { CallbackTypes } from 'vue3-google-login'
 const router = useRouter()
 const user = useUserStore()
-const emit = defineEmits(["error"])
+const emit = defineEmits(['error'])
 const callback: CallbackTypes.CredentialCallback = async (response) => {
-    try {
-        console.log(response)
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login/google`, {
-            method: "POST",
-            body: JSON.stringify({
-                accessToken: `${response.credential}`,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        const data = await res.json()
+  try {
+    console.log(response)
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login/google`, {
+      method: 'POST',
+      body: JSON.stringify({
+        accessToken: `${response.credential}`,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    const data = await res.json()
 
-        if (!res.ok) {
-            emit("error", data?.message)
-            throw Error("Request failed!")
-        }
-
-        user.newValueAccessToken(data?.authorization)
-        router.push("/app/board")
-    } catch (err) {
-        console.log(err)
+    if (!res.ok) {
+      emit('error', data?.message)
+      throw Error('Request failed!')
     }
+
+    user.newValueAccessToken(data?.authorization)
+    router.push('/app/board')
+  } catch (err) {
+    console.log(err)
+  }
 }
 </script>
 

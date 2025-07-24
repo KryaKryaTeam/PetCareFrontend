@@ -3,7 +3,6 @@ import { mount } from '@vue/test-utils'
 import BreedPanel from '@/widget/breedPanel.vue'
 import flushPromises from 'flush-promises'
 
-
 describe('Breed Panel tests', () => {
   let wrapper: ReturnType<typeof mount>
 
