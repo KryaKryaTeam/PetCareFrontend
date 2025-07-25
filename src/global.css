@@ -8,6 +8,7 @@
 
 :root {
   --background-image: none;
+  --background-color: #faf6ee;
 }
 
 html,
@@ -141,7 +142,7 @@ a {
 body {
   width: 100vw;
   overflow-x: hidden;
-  background-color: #faf6ee;
+  background-color: var(--background-color);
   min-height: 100vh;
   background-image: var(--background-image);
   backdrop-filter: blur(10px);

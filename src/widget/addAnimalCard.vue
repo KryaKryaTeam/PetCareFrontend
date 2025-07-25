@@ -1,13 +1,10 @@
 <template>
   <div class="main">
-  <button @click="router.push('/app/addpet')">
-    <img src="/images/addPet-icon.svg" alt="add image" class="img" />
+    <button @click="router.push('/app/addpet')">
+      <img src="/images/addPet-icon.svg" alt="add image" class="img" />
 
-    <div id="text">
-      Add animal board
-    </div>
-
-  </button>
+      <div id="text">Add animal board</div>
+    </button>
   </div>
 </template>
 
@@ -56,6 +53,4 @@ button {
   cursor: pointer;
   padding: 0;
 }
-
-
 </style>

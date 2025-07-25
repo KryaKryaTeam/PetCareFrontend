@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted } from 'vue'
 
-export function useBackground(backgroundUrl: string) {
+export function useBackgroundImage(backgroundUrl: string) {
   onMounted(() => {
     document.documentElement.style.setProperty('--background-image', `url('${backgroundUrl}')`)
   })
@@ -8,3 +8,4 @@ export function useBackground(backgroundUrl: string) {
     document.documentElement.style.setProperty('--background-image', 'none')
   })
 }
+

@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import ContainerComp from '@/shared/components/containerComp.vue'
-import AddAnimalCard from '@/widget/addAnimalCard.vue';
-import PetCard from '@/widget/petCard.vue';
-
+import AddAnimalCard from '@/widget/addAnimalCard.vue'
+import PetCard from '@/widget/petCard.vue'
 </script>
 
 <template>
@@ -10,9 +9,14 @@ import PetCard from '@/widget/petCard.vue';
     <ContainerComp class="container">
       <div class="grid">
         <PetCard name="alex" imgLink="/images/testimg.png" :id="1" />
-        <AddAnimalCard />  </div>
+        <AddAnimalCard />
+      </div>
     </ContainerComp>
   </div>
+
+
+
+  
 </template>
 <style lang="css" scoped>
 .grid {
