@@ -7,8 +7,20 @@
 */
 
 :root {
+  --backdrop-opacity: 0;
   --background-image: none;
   --background-color: #faf6ee;
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  opacity: var(--backdrop-opacity);
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1;
 }
 
 html,
