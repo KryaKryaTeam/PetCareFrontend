@@ -1,18 +1,15 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-import useBackdropOpacity from '@/features/composebles/useBackdropOpacity'
+import { ref } from 'vue'
 
 import ContainerComp from '@/shared/components/containerComp.vue'
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import PetCard from '@/widget/petCard.vue'
+import DeleteCard from '@/widget/deleteCard.vue'
+import useBackgroundColor from '@/features/composebles/useBackgroundColor'
 
 const isDark = ref(false)
 
-const opacity = useBackdropOpacity(0)
-
-watch(isDark, (newVal) => {
-  opacity.value = newVal ? 0.5 : 0
-})
+useBackgroundColor('black')
 
 const toggleBackdrop = () => {
   isDark.value = !isDark.value
@@ -20,7 +17,7 @@ const toggleBackdrop = () => {
 </script>
 
 <template>
-  <div>
+  <div class="RootElementWithModalLogic">
     <button class="test-btn" @click="toggleBackdrop">
       Тест
     </button>
@@ -32,6 +29,8 @@ const toggleBackdrop = () => {
       </div>
     </ContainerComp>
   </div>
+
+  <DeleteCard v-if="isDark" />
 </template>
 
 <style scoped>

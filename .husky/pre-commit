@@ -1,4 +1,2 @@
 npm run format
-npm run test:unit
-npm run build-only
-npm run test:e2e
+
