@@ -1,12 +1,12 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { useBackground } from '../useBackgroundImage'
+import { describe, it, expect } from 'vitest'
+import { useBackgroundImage } from '../useBackgroundImage'
 import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 
 const backgroundUrl = '/images/BackgroundAuth.svg'
 const testComponent = defineComponent({
   setup() {
-    useBackground(backgroundUrl)
+    useBackgroundImage(backgroundUrl)
   },
   template: `
   <div></div>

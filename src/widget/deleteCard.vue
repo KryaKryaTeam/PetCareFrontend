@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import useBackdropOpacityV1 from '@/features/composebles/useBackdropOpacityV1'
-import Button from '@/shared/ui/button.vue';
+import Button from '@/shared/ui/button.vue'
+const emit = defineEmits(['cancel', 'delete'])
 
 useBackdropOpacityV1(0.5)
 </script>
@@ -14,16 +15,15 @@ useBackdropOpacityV1(0.5)
         <strong class="modal-strong">delete this?</strong>
       </div>
       <div class="button-block">
-      <Button class="cancel">Cancel</Button>
-      <Button class="delete">Delete</Button>
+        <Button class="cancel" @click="emit('cancel')">Cancel</Button>
+        <Button class="delete" @click="emit('delete')">Delete</Button>
       </div>
     </div>
   </div>
 </template>
 
-
 <style lang="css" scoped>
-.button-block{
+.button-block {
   display: flex;
   justify-content: space-between;
   gap: 15px;
@@ -39,7 +39,7 @@ useBackdropOpacityV1(0.5)
 }
 
 .modal-box {
-  background-color: #F9F5EC;
+  background-color: #f9f5ec;
   width: 20%;
   min-width: 300px;
   height: auto;
@@ -55,7 +55,7 @@ useBackdropOpacityV1(0.5)
 }
 
 .modal-text {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
   color: #1f1f1f;
   font-weight: 500;

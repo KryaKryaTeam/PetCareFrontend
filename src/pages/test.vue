@@ -28,9 +28,8 @@ const toggleBackdrop = () => {
     </ContainerComp>
   </div>
 
-
   <div>
-  <DeleteCard v-if="isDark" />
+    <DeleteCard v-if="isDark" @cancel="() => toggleBackdrop()"/>
   </div>
 </template>
 

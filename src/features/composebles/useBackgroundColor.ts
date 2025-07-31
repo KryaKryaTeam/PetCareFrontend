@@ -1,7 +1,6 @@
 import type { ClassicColor, HexColor } from '@/@types'
 import { onMounted, onUnmounted } from 'vue'
 
-
 const useBackgroundColor = (color: HexColor | ClassicColor) => {
   onMounted(() => {
     document.documentElement.style.setProperty('--background-color', color)
