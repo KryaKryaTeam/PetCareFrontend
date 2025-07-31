@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@plugin "daisyui";
+
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -22,7 +22,6 @@ html::before {
   transition: opacity 0.3s ease-in-out;
   z-index: 1;
 }
-
 
 html,
 body,
@@ -163,9 +162,9 @@ body {
   background-size: cover;
 }
 
- /* global classes by AANDDARK */
+/* global classes by AANDDARK */
 
-.RootElementWithModalLogic{
+.RootElementWithModalLogic {
   opacity: var(--backdrop-opacity);
   pointer-events: auto;
   background-color: #faf6ee;
@@ -173,5 +172,3 @@ body {
   height: 100%;
   position: absolute;
 }
-
-

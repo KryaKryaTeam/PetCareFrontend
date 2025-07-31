@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-
 const props = defineProps({
   disabled: {
     type: Boolean,
@@ -11,6 +10,7 @@ const props = defineProps({
     default: false,
   },
 })
+
 </script>
 
 <template>
@@ -24,6 +24,9 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
+
+
+
 .btn {
   padding: 20px 16px;
   width: max-content;

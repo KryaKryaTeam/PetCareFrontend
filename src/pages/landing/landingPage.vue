@@ -1,7 +1,7 @@
 <script setup>
 import Card1 from '@/shared/landing/Card1.vue'
 import Card2 from '@/shared/landing/Card2.vue'
-import Button from '@/widget/ui/button.vue'
+import Button from '@/shared/ui/button.vue'
 import Card3 from '@/shared/landing/Card3.vue'
 import Review from '@/shared/landing/Review.vue'
 </script>

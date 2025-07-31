@@ -1,7 +1,7 @@
 // eslint-disable-next-line vue/block-lang
 <script setup lang="ts">
 import { useBackgroundImage } from '@/features/composebles/useBackgroundImage'
-import ContainerComp from '@/shared/components/containerComp.vue'
+import ContainerComp from '@/shared/containers/containerComp.vue'
 import FooterListing from '@/widget/footerListing.vue'
 import HeaderListing from '@/widget/headerListing.vue'
 

@@ -8,4 +8,3 @@ export function useBackgroundImage(backgroundUrl: string) {
     document.documentElement.style.setProperty('--background-image', 'none')
   })
 }
-

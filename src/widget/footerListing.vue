@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ContainerComp from '@/shared/components/containerComp.vue'
+import ContainerComp from '@/shared/containers/containerComp.vue';
 </script>
 
 <template>

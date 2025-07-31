@@ -1,10 +1,10 @@
-import { onMounted, onUnmounted, ref, watch } from "vue"
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 
 const useBackdropOpacityV1 = (value: number | string) => {
-  const opacity = ref(value)
+  const opacity = ref(Number(value).toString())
 
   onMounted(() => {
-    document.documentElement.style.setProperty('--backdrop-opacity', opacity.value.toString())
+    document.documentElement.style.setProperty('--backdrop-opacity', opacity.value)
   })
 
   onUnmounted(() => {

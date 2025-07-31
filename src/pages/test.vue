@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import ContainerComp from '@/shared/components/containerComp.vue'
+import ContainerComp from '@/shared/containers/containerComp.vue'
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import PetCard from '@/widget/petCard.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
@@ -18,9 +18,7 @@ const toggleBackdrop = () => {
 
 <template>
   <div class="RootElementWithModalLogic">
-    <button class="test-btn" @click="toggleBackdrop">
-      Тест
-    </button>
+    <button class="test-btn" @click="toggleBackdrop">Тест</button>
 
     <ContainerComp class="container">
       <div class="grid">
@@ -30,7 +28,10 @@ const toggleBackdrop = () => {
     </ContainerComp>
   </div>
 
+
+  <div>
   <DeleteCard v-if="isDark" />
+  </div>
 </template>
 
 <style scoped>

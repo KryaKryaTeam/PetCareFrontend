@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import useUserStore from '@/entities/User/userStore'
 import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
-import Button from '@/widget/ui/button.vue'
+import Button from '@/shared/ui/button.vue'
 import CheckMask from '@/widget/ui/forms/checkMask.vue'
 import Input from '@/widget/ui/forms/input.vue'
 import { ref } from 'vue'
