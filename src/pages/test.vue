@@ -6,6 +6,7 @@ import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import PetCard from '@/widget/petCard.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import useBackgroundColor from '@/features/composebles/useBackgroundColor'
+import BoardHeader from '@/widget/boardHeader.vue'
 
 const isDark = ref(false)
 
@@ -17,15 +18,9 @@ const toggleBackdrop = () => {
 </script>
 
 <template>
+  <BoardHeader />
   <div class="RootElementWithModalLogic">
-    <button class="test-btn" @click="toggleBackdrop">Тест</button>
 
-    <ContainerComp class="container">
-      <div class="grid">
-        <PetCard name="alex" imgLink="/images/testimg.png" :id="1" />
-        <AddAnimalCard />
-      </div>
-    </ContainerComp>
   </div>
 
   <div>
