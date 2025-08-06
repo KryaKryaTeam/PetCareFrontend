@@ -2,7 +2,6 @@
   <div class="main">
     <button @click="router.push('/app/addpet')">
       <img src="/images/addPet-icon.svg" alt="add image" class="img" />
-
       <div id="text">Add animal board</div>
     </button>
   </div>
@@ -13,23 +12,24 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 </script>
-<style lang="css" scoped>
+
+<style scoped lang="css">
 .main {
   display: flex;
-  flex-direction: column; /* Vertical stacking */
-  align-items: center; /* Center horizontally */
-  justify-content: flex-start; /* Top align children */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
-  width: 527px;
-  height: 510px;
+  width: 100%;
+  max-width: 480px;
 
-  padding: 40px 88px; /* Top/Bottom: 40px, Left/Right: 88px */
-  gap: 25px; /* 25px space between children */
+  padding: 40px 88px;
+  gap: 25px;
 
   border: 2px solid #1a7d87;
   border-radius: 15px;
 
-  box-sizing: border-box; /* Ensures padding stays within size */
+  box-sizing: border-box;
 }
 
 .img {
@@ -52,5 +52,10 @@ button {
   outline: none;
   cursor: pointer;
   padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
 }
 </style>

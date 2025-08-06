@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="container">
-      <img src="/images/Logo.svg" class="logo" />
+      <router-link to="/app/board"><img src="/images/Logo.svg" class="logo" /></router-link>
 
       <div class="icons">
         <img src="/images/bell.svg" />
@@ -18,7 +18,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 25px 150px;
-  background-color: #FAF6EE;
+  background-color: #faf6ee;
 }
 
 .icons {

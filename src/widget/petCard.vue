@@ -6,7 +6,7 @@
         <span class="text">Edit</span>
       </button>
 
-      <button class="action-btn">
+      <button class="action-btn" @click="emitDelete">
         <img src="/images/backet-icon.svg" class="icon" />
         <span class="text">Delete</span>
       </button>
@@ -22,13 +22,17 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-
+const emit = defineEmits(['delete'])
 const router = useRouter()
 const props = defineProps<{
   id: number
   name: string
   imgLink: string
 }>()
+
+const emitDelete = () => {
+  emit('delete', props.id)
+}
 </script>
 <style lang="css" scoped>
 .main {
@@ -37,8 +41,8 @@ const props = defineProps<{
   align-items: center; /* Center horizontally */
   justify-content: flex-start; /* Top align children */
 
-  width: 527px;
-  height: 510px;
+  width: 100%;
+  max-width: 480px;
 
   padding: 40px 88px; /* Top/Bottom: 40px, Left/Right: 88px */
   gap: 25px; /* 25px space between children */
@@ -81,11 +85,13 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center; /* vertical center of buttons */
-  justify-content: center;
+  /* justify-content: center; */
   width: 447px;
   gap: 258px;
   padding: 0;
   box-sizing: border-box;
+  justify-content: space-between;
+  gap: 0;
 }
 
 .action-btn {

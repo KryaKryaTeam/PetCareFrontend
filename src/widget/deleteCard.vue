@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import useBackdropOpacityV1 from '@/features/composebles/useBackdropOpacityV1'
+import useParentBackgroundOpacity from '@/features/composebles/useParentBackgroundOpacity';
 import Button from '@/shared/ui/button.vue'
-const emit = defineEmits(['cancel', 'delete'])
 
-useBackdropOpacityV1(0.5)
+const emit = defineEmits(['cancel', 'delete'])
+const props = defineProps({
+  idToDelete: Number
+})
+useParentBackgroundOpacity(0.5)
 </script>
 
-<!-- DeleteCard.vue -->
+
 <template>
+  <Teleport to="body">
   <div class="modal-overlay">
     <div class="modal-box">
       <div class="modal-text">
@@ -16,10 +20,11 @@ useBackdropOpacityV1(0.5)
       </div>
       <div class="button-block">
         <Button class="cancel" @click="emit('cancel')">Cancel</Button>
-        <Button class="delete" @click="emit('delete')">Delete</Button>
+        <Button class="delete" @click="emit('delete', props.idToDelete)">Delete</Button>
       </div>
     </div>
   </div>
+  </Teleport>
 </template>
 
 <style lang="css" scoped>

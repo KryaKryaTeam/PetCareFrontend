@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
 
-
 let mountedCallback: () => void
 let unmountedCallback: () => void
 

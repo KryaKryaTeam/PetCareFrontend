@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 
-const useBackdropOpacityV1 = (value: number | string) => {
+const useParentBackgroundOpacity = (value: number | string) => {
   const opacity = ref(Number(value).toString())
 
   onMounted(() => {
@@ -18,4 +18,4 @@ const useBackdropOpacityV1 = (value: number | string) => {
   return opacity
 }
 
-export default useBackdropOpacityV1
+export default useParentBackgroundOpacity

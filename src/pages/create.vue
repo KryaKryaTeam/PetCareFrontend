@@ -1,3 +1,1 @@
-<template>
-  in develop
-</template>
+<template>in develop</template>

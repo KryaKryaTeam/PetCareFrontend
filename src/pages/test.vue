@@ -19,16 +19,14 @@ const toggleBackdrop = () => {
 
 <template>
   <BoardHeader />
-  <div class="RootElementWithModalLogic">
-
-  </div>
+  <div class="RootElementWithModalLogic"></div>
 
   <div>
-    <DeleteCard v-if="isDark" @cancel="() => toggleBackdrop()"/>
+    <DeleteCard v-if="isDark" @cancel="() => toggleBackdrop()" />
   </div>
 </template>
 
-<style scoped>
+<style  scoped>
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
