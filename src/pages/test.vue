@@ -26,7 +26,7 @@ const toggleBackdrop = () => {
   </div>
 </template>
 
-<style  scoped>
+<style scoped>
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

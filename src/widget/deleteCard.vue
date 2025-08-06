@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import useParentBackgroundOpacity from '@/features/composebles/useParentBackgroundOpacity';
+import useParentBackgroundOpacity from '@/features/composebles/useParentBackgroundOpacity'
 import Button from '@/shared/ui/button.vue'
 
 const emit = defineEmits(['cancel', 'delete'])
 const props = defineProps({
-  idToDelete: Number
+  idToDelete: Number,
 })
 useParentBackgroundOpacity(0.5)
 </script>
 
-
 <template>
   <Teleport to="body">
-  <div class="modal-overlay">
-    <div class="modal-box">
-      <div class="modal-text">
-        Are you sure you want to <br />
-        <strong class="modal-strong">delete this?</strong>
-      </div>
-      <div class="button-block">
-        <Button class="cancel" @click="emit('cancel')">Cancel</Button>
-        <Button class="delete" @click="emit('delete', props.idToDelete)">Delete</Button>
+    <div class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-text">
+          Are you sure you want to <br />
+          <strong class="modal-strong">delete this?</strong>
+        </div>
+        <div class="button-block">
+          <Button class="cancel" @click="emit('cancel')">Cancel</Button>
+          <Button class="delete" @click="emit('delete', props.idToDelete)">Delete</Button>
+        </div>
       </div>
     </div>
-  </div>
   </Teleport>
 </template>
 
