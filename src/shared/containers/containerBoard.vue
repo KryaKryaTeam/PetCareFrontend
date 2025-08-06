@@ -6,8 +6,9 @@
 
 <style lang="scss" scoped>
 .container {
-  width: 85%;
-  height: 100%;
-  padding: 0px 7.5%;
+  width: 100%;
+  height: auto;
+  padding: 0% 10px;
+  box-sizing: border-box;
 }
 </style>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import useBackgroundColor from '@/features/composebles/useBackgroundColor'
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
-import ContainerComp from '@/shared/containers/containerComp.vue'
+
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import BoardHeader from '@/widget/boardHeader.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
 import { ref } from 'vue'
-useBackgroundColor('black')
+
 const idToDelete = ref<number | null>(null)
 const isDark = ref(false)
 
@@ -48,7 +48,7 @@ const pets = ref([
 <template>
   <main class="RootElementWithModalLogic">
     <BoardHeader />
-    <div>
+    <div class="root">
       <ContainerBoard class="grid">
         <PetCard
           v-for="pet in pets"
@@ -82,4 +82,6 @@ const pets = ref([
   column-gap: 5px;
   padding-top: 20px;
 }
+
+
 </style>

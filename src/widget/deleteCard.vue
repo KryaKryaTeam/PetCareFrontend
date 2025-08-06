@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import useParentBackgroundOpacity from '@/features/composebles/useParentBackgroundOpacity'
+import useModal from '@/features/composebles/useModal'
 import Button from '@/shared/ui/button.vue'
 
 const emit = defineEmits(['cancel', 'delete'])
 const props = defineProps({
   idToDelete: Number,
 })
-useParentBackgroundOpacity(0.5)
+useModal(0.5)
 </script>
 
 <template>

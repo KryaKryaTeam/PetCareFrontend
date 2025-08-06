@@ -1,18 +1,13 @@
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 
-const useParentBackgroundOpacity = (value: number | string) => {
+const useParentBackgroundOpacity = (state: Ref<boolean>, value: number | string) => {
   const opacity = ref(Number(value).toString())
-
-  onMounted(() => {
-    document.documentElement.style.setProperty('--backdrop-opacity', opacity.value)
-  })
-
-  onUnmounted(() => {
-    document.documentElement.style.setProperty('--backdrop-opacity', '1')
-  })
-
-  watch(opacity, (newVal) => {
-    document.documentElement.style.setProperty('--backdrop-opacity', newVal.toString())
+  watch(state, () => {
+    if (state) {
+      document.documentElement.style.setProperty('--backdrop-opacity', opacity.value)
+    } else {
+      document.documentElement.style.setProperty('--backdrop-opacity', '1')
+    }
   })
 
   return opacity

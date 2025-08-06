@@ -164,10 +164,12 @@ body {
 /* global classes by AANDDARK */
 
 .RootElementWithModalLogic {
+  height: 100%;
+  width: 100%;
+  background-color: #faf6ee;
   opacity: var(--backdrop-opacity);
   pointer-events: auto;
-  background-color: #faf6ee;
-  width: 100%;
-  height: 100%;
-  /* position: absolute;  */
+  z-index: 2;
 }
+
+
