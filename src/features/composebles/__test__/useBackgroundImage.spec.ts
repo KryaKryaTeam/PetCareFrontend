@@ -13,7 +13,7 @@ const testComponent = defineComponent({
   `,
 })
 
-describe('useBackground tests', () => {
+describe('useBackgroundImage tests', () => {
   const wrapper = mount(testComponent)
 
   it('set background img', async () => {
