@@ -1,1 +1,3 @@
-echo "help"
+npm run test:unit
+npm run build-only
+npm run test:e2e

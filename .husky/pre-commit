@@ -1,2 +1,2 @@
-npm format
-npm run test:unit
+npm run format
+
