@@ -7,7 +7,6 @@ import useModal from '@/features/composebles/useModal'
 
 const isDark = ref(false)
 
-
 const toggleBackdrop = () => {
   isDark.value = !isDark.value
 }
@@ -16,7 +15,7 @@ const toggleBackdrop = () => {
 <template>
   <BoardHeader />
   <div class="RootElementWithModalLogic"></div>
-    <button @click="toggleBackdrop">work</button>
+  <button @click="toggleBackdrop">work</button>
   <div>
     <DeleteCard v-if="isDark" @cancel="() => toggleBackdrop()" />
   </div>
