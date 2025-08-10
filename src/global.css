@@ -164,11 +164,7 @@ body {
 /* global classes by AANDDARK */
 
 .RootElementWithModalLogic {
-
-
   opacity: var(--backdrop-opacity);
   pointer-events: auto;
   z-index: 2;
 }
-
-

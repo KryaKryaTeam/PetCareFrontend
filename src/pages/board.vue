@@ -81,6 +81,4 @@ const pets = ref([
   column-gap: 5px;
   padding-top: 20px;
 }
-
- 
 </style>
