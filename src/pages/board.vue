@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import useBackgroundColor from '@/features/composebles/useBackgroundColor'
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
 
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
@@ -83,5 +82,5 @@ const pets = ref([
   padding-top: 20px;
 }
 
-
+ 
 </style>

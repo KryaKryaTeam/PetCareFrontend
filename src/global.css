@@ -15,14 +15,17 @@ html::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-color: black;
+  background-color: var(--background-color);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease-in-out;
   z-index: 1;
 }
 
-html,
+html {
+  width: 100%;
+  min-height: 100%;
+}
 body,
 div,
 span,
@@ -151,12 +154,9 @@ a {
 }
 
 body {
-  width: 100vw;
-  overflow-x: hidden;
-  background-color: var(--background-color);
-  min-height: 100vh;
+  min-height: 100%;
+  background-color: #faf6ee;
   background-image: var(--background-image);
-  backdrop-filter: blur(10px);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -164,9 +164,8 @@ body {
 /* global classes by AANDDARK */
 
 .RootElementWithModalLogic {
-  height: 100%;
-  width: 100%;
-  background-color: #faf6ee;
+
+
   opacity: var(--backdrop-opacity);
   pointer-events: auto;
   z-index: 2;
