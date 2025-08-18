@@ -2,7 +2,7 @@
 import useUserStore from '@/entities/User/userStore'
 import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
 import Button from '@/shared/ui/button.vue'
-import Input from '@/widget/ui/forms/input.vue'
+import Input from '@/shared/ui/input.vue'
 import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import * as z from 'zod'

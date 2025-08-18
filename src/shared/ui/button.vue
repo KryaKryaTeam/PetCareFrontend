@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { disabled, fullWidth } = defineProps({
   disabled: { type: Boolean, default: false },
-  fullWidth: { type: Boolean, default: false }
+  fullWidth: { type: Boolean, default: false },
 })
 </script>
 

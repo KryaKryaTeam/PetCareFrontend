@@ -4,6 +4,8 @@ import { ref } from 'vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import BoardHeader from '@/widget/boardHeader.vue'
 import useModal from '@/features/composebles/useModal'
+import AddAnimalCard from '@/widget/addAnimalCard.vue'
+import AddAnimalModal from '@/widget/addAnimalModal.vue'
 
 const isDark = ref(false)
 
@@ -17,7 +19,7 @@ const toggleBackdrop = () => {
   <div class="RootElementWithModalLogic"></div>
   <button @click="toggleBackdrop">work</button>
   <div>
-    <DeleteCard v-if="isDark" @cancel="() => toggleBackdrop()" />
+    <AddAnimalModal v-if="isDark"  />
   </div>
 </template>
 
