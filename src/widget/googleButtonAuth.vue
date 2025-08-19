@@ -7,7 +7,7 @@
     </GoogleLogin> -->
 </template>
 <script setup lang="ts">
-import useUserStore from '@/entities/User/userStore'
+import useUserStore from '@/stores/User/userStore'
 import { useRouter } from 'vue-router'
 import type { CallbackTypes } from 'vue3-google-login'
 const router = useRouter()

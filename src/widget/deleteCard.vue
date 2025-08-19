@@ -4,7 +4,7 @@ import Button from '@/shared/ui/button.vue'
 
 const emit = defineEmits(['cancel', 'delete'])
 const props = defineProps({
-  idToDelete: Number,
+  idToDelete: String,
 })
 useModal(0.5)
 </script>

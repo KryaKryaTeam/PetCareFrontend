@@ -25,7 +25,7 @@ import { useRouter } from 'vue-router'
 const emit = defineEmits(['delete'])
 const router = useRouter()
 const props = defineProps<{
-  id: number
+  id: string
   name: string
   imgLink: string
 }>()

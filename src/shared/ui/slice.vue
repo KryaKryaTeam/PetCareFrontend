@@ -9,7 +9,7 @@ const props = defineProps<{
   isFirst: boolean
 }>()
 
-const color = computed(() => props.isFirst ?  '#209AA6' : '#514F4D')
+const color = computed(() => (props.isFirst ? '#209AA6' : '#514F4D'))
 </script>
 
 <style scoped>

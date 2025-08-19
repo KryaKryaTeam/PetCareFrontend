@@ -1,47 +1,29 @@
 <script setup lang="ts">
+import useGetAnimals from '@/features/Animal/useGetAnimals'
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
+import useUserStore from '@/stores/User/userStore'
 
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import BoardHeader from '@/widget/boardHeader.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
-import { ref } from 'vue'
-
-const idToDelete = ref<number | null>(null)
+import { onMounted, ref } from 'vue'
+const pets = ref<any[]>([])
+const idToDelete = ref<string | null>(null)
 const isDark = ref(false)
-
-setInterval(() => {
+onMounted(async () => {
+  pets.value = await useGetAnimals().then((object) => object.animals)
   console.log(pets.value)
-}, 5000)
-
-const toggleBackdrop = (id?: number) => {
+})
+const toggleBackdrop = (id?: string) => {
   idToDelete.value = id ?? null
   isDark.value = id !== undefined
 }
 
 const deleteCard = (id: number) => {
-  console.log(id)
-  pets.value = pets.value.filter((e) => e.id !== id)
+  pets.value = pets.value.filter((e) => e._id !== id)
   toggleBackdrop()
 }
-
-const pets = ref([
-  {
-    id: 1,
-    name: 'alex',
-    imgLink: '/images/testimg.png',
-  },
-  {
-    id: 2,
-    name: 'milo',
-    imgLink: '/images/testimg.png',
-  },
-  {
-    id: 3,
-    name: 'luna',
-    imgLink: '/images/testimg.png',
-  },
-])
 </script>
 
 <template>
@@ -50,14 +32,13 @@ const pets = ref([
     <div class="root">
       <ContainerBoard class="grid">
         <PetCard
-          v-for="pet in pets"
-          :key="pet.id"
-          :id="pet.id"
+          v-for="(pet, index) in pets"
+          :key="index"
+          :id="pet._id"
           :name="pet.name"
-          :img-link="pet.imgLink"
-          @delete="() => toggleBackdrop(pet.id)"
+          img-link="/images/testimg.png"
+          @delete="() => toggleBackdrop(pet._id)"
         />
-
         <AddAnimalCard />
       </ContainerBoard>
     </div>

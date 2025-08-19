@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import useUserStore from '@/entities/User/userStore'
+import useUserStore from '@/stores/User/userStore'
 import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
 import Button from '@/shared/ui/button.vue'
 import CheckMask from '@/shared/ui/checkMask.vue'
 import Input from '@/shared/ui/input.vue'
-import { ref } from 'vue'
+import { provide, ref } from 'vue'
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { z } from 'zod'
@@ -68,6 +68,7 @@ async function postForm() {
     console.log('Submitting form:', JSON.stringify(form))
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/register/self`, {
       method: 'POST',
+      credentials: "include",
       headers: {
         'Content-Type': 'application/json',
       },
@@ -81,6 +82,8 @@ async function postForm() {
       throw new Error('Network response was not ok')
     }
     await user.newValueAccessToken(data.authorization)
+    localStorage.setItem('hasRefresh', String(true));
+    localStorage.setItem("RefreshTime", new Date().toISOString());
     router.push('/app/board')
   } catch (error) {
     console.error('Sign-up error:', error)

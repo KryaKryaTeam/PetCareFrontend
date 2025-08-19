@@ -19,7 +19,7 @@ const toggleBackdrop = () => {
   <div class="RootElementWithModalLogic"></div>
   <button @click="toggleBackdrop">work</button>
   <div>
-    <AddAnimalModal v-if="isDark"  />
+    <AddAnimalModal v-if="isDark" />
   </div>
 </template>
 
