@@ -2,11 +2,12 @@ import useUserStore from '@/stores/User/userStore'
 import { provide } from 'vue'
 
 const useGetAnimals = async () => {
-  const user = useUserStore();
+  const user = useUserStore()
   try {
+    console.debug(user.accessToken)
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
       method: 'GET',
-      credentials: "include",
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -25,10 +26,9 @@ const useGetAnimals = async () => {
 
     return await res.json()
   } catch (error) {
-    console.error("useGetAnimals failed:", error)
+    console.error('useGetAnimals failed:', error)
     throw error // rethrow so caller can handle it
   }
 }
-
 
 export default useGetAnimals

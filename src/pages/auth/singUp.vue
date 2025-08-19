@@ -68,7 +68,7 @@ async function postForm() {
     console.log('Submitting form:', JSON.stringify(form))
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/register/self`, {
       method: 'POST',
-      credentials: "include",
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -82,8 +82,8 @@ async function postForm() {
       throw new Error('Network response was not ok')
     }
     await user.newValueAccessToken(data.authorization)
-    localStorage.setItem('hasRefresh', String(true));
-    localStorage.setItem("RefreshTime", new Date().toISOString());
+    localStorage.setItem('hasRefresh', String(true))
+    localStorage.setItem('RefreshTime', new Date().toISOString())
     router.push('/app/board')
   } catch (error) {
     console.error('Sign-up error:', error)
