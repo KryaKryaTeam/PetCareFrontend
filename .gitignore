@@ -36,3 +36,10 @@ package-lock.json
 
 // env
 .env
+
+// report by playwright
+
+playwright-report
+test-results
+*storybook.log
+storybook-static
