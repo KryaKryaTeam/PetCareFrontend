@@ -3,7 +3,7 @@ const props = defineProps({ checked: { type: Boolean, defualt: false } })
 </script>
 
 <template>
-  <div :class="['check', props.checked ? 'act' : none]">
+  <div :class="['check', props.checked ? 'act' : false]">
     <img v-if="props.checked" src="/images/arrow.svg" />
   </div>
 </template>

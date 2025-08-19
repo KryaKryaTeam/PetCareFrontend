@@ -24,7 +24,7 @@ function changeState() {
       :class="['input', isError ? 'error' : null]"
       :value="modelValue"
       :type="type"
-      @input="emit('update:modelValue', $event.target.value)"
+      @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
     <label
       v-else
@@ -39,7 +39,7 @@ function changeState() {
         :type="!isOpen ? 'password' : 'text'"
         v-bind="attrs"
         :value="modelValue"
-        @input="emit('update:modelValue', $event.target.value)"
+        @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
       <img
         :src="!isOpen ? '/images/eye-open.svg' : '/images/eye-closed.svg'"
