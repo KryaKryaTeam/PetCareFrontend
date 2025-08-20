@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import Leftarrow from '@/shared/icon/leftarrow.vue';
 import Slice from '@/shared/ui/slice.vue'
+
+const emit = defineEmits(["close"])
+
+const emitClose = () => emit("close")
 </script>
 
 <template>
   <Teleport to="body">
     <div class="modal-overlay">
       <div class="modal-box">
-        <div class="exiet-text">
-          <button>back</button>
+        <div class="back-block">
+          <Leftarrow />
+          <button class="close-btn" @click="emitClose"><span class="text-btn">back</span></button>
         </div>
         <div class="modal-text">Please select a board</div>
         <div id="block">
@@ -23,6 +29,23 @@ import Slice from '@/shared/ui/slice.vue'
   </Teleport>
 </template>
 <style lang="css" scoped>
+.text-btn{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: #000;
+  
+}
+.back-block{
+  display: flex;
+  justify-content: start;
+  width: 98%;
+}
+.close-btn{
+  background: none;
+  border: none;
+}
 .modal-overlay {
   position: fixed;
   inset: 0;
