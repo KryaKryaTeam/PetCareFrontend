@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <button @click="router.push('/app/addpet')">
+    <button @click="emitAdd()">
       <img src="/images/addPet-icon.svg" alt="add image" class="img" />
       <div id="text">Add animal board</div>
     </button>
@@ -8,9 +8,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+const emit = defineEmits(['add'])
 
-const router = useRouter()
+const emitAdd = () => {
+  emit('add')
+}
 </script>
 
 <style scoped lang="css">
