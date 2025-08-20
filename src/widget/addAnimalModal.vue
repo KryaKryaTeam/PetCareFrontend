@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import Leftarrow from '@/shared/icon/leftarrow.vue';
+import Leftarrow from '@/shared/icon/leftarrow.vue'
 import Slice from '@/shared/ui/slice.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const emit = defineEmits(['close'])
 
-const emit = defineEmits(["close"])
-
-const emitClose = () => emit("close")
+const emitClose = () => emit('close')
 </script>
 
 <template>
@@ -13,39 +14,41 @@ const emitClose = () => emit("close")
       <div class="modal-box">
         <div class="back-block">
           <Leftarrow />
-          <button class="close-btn" @click="emitClose"><span class="text-btn">back</span></button>
+          <button class="invisible-btn" @click="emitClose"><span class="text-btn">back</span></button>
         </div>
         <div class="modal-text">Please select a board</div>
         <div id="block">
           <Slice :isFirst="true" />
+          <button @click="router.push({ name: 'create', query: { animal: 'dog' } })" class="invisible-btn">
           <img src="/images/dog-icon.svg" class="img" />
+          </button>
           <Slice :isFirst="false" class="img" />
+          <button @click="router.push({ name: 'create', query: { animal: 'dog' } })" class="invisible-btn">
           <img src="/images/cat-icon.svg" />
+          </button>
           <Slice :isFirst="false" class="img" />
+          <button @click="router.push({ name: 'create', query: { animal: 'dog' } })" class="invisible-btn">
           <img src="/images/bird-icon.svg" />
+          </button>
         </div>
       </div>
     </div>
   </Teleport>
 </template>
 <style lang="css" scoped>
-.text-btn{
-  font-family: "Montserrat", sans-serif;
+.text-btn {
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.05em;
   color: #000;
-  
 }
-.back-block{
+.back-block {
   display: flex;
   justify-content: start;
   width: 98%;
 }
-.close-btn{
-  background: none;
-  border: none;
-}
+
 .modal-overlay {
   position: fixed;
   inset: 0;

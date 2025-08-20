@@ -11,7 +11,7 @@
 const emit = defineEmits(['add'])
 
 const emitAdd = () => {
-    emit("add")
+  emit('add')
 }
 </script>
 

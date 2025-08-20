@@ -26,7 +26,7 @@ const deleteCard = (id: number) => {
   pets.value = pets.value.filter((e) => e._id !== id)
   toggleDeleteBackdrop()
 }
-const toggeAddBackdrop = () => isAddDark.value = !isAddDark.value
+const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
 </script>
 
 <template>
@@ -42,9 +42,7 @@ const toggeAddBackdrop = () => isAddDark.value = !isAddDark.value
           img-link="/images/testimg.png"
           @delete="() => toggleDeleteBackdrop(pet._id)"
         />
-        <AddAnimalCard
-          @add="() => toggeAddBackdrop()"
-        />
+        <AddAnimalCard @add="() => toggeAddBackdrop()" />
       </ContainerBoard>
     </div>
   </main>
@@ -56,10 +54,7 @@ const toggeAddBackdrop = () => isAddDark.value = !isAddDark.value
       @cancel="() => toggleDeleteBackdrop()"
       @delete="(id) => deleteCard(id)"
     />
-    <AddAnimalModal
-         v-if="isAddDark"
-        @close="toggeAddBackdrop()"
-    />
+    <AddAnimalModal v-if="isAddDark" @close="toggeAddBackdrop()" />
   </div>
 </template>
 
