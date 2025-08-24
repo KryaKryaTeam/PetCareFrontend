@@ -1,11 +1,10 @@
-import useUserStore from '@/stores/User/userStore'
+import useUserStore from "@/stores/User/userStore"
 
-
-const useGetAnimals = async () => {
+const useDeleteAnimals = async (id: string) => {
   const user = useUserStore()
   try {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
-      method: 'GET',
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal/${id}`, {
+      method: 'DELETE',
       credentials: 'include',
       headers: {
         authorization: `Bearer ${user.accessToken}`,
@@ -16,7 +15,7 @@ const useGetAnimals = async () => {
       // If token is invalid, try refresh once
       if (res.status === 401) {
         await user.refresh()
-        return await useGetAnimals()
+        return await useDeleteAnimals(id)
       }
 
       // Otherwise throw the error
@@ -30,4 +29,4 @@ const useGetAnimals = async () => {
   }
 }
 
-export default useGetAnimals
+export default useDeleteAnimals

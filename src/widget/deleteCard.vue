@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import useDeleteAnimals from '@/features/Animal/useDeleteAnimal'
 import useModal from '@/features/composebles/useModal'
 import Button from '@/shared/ui/button.vue'
 
 const emit = defineEmits(['cancel', 'delete'])
+
 const props = defineProps({
   idToDelete: String,
 })
+
+async function deleteRequest(){
+  await useDeleteAnimals(props.idToDelete);
+  emit("delete", props.idToDelete)
+}
+
 useModal(0.5)
 </script>
 
@@ -19,7 +27,7 @@ useModal(0.5)
         </div>
         <div class="button-block">
           <Button class="cancel" @click="emit('cancel')">Cancel</Button>
-          <Button class="delete" @click="emit('delete', props.idToDelete)">Delete</Button>
+          <Button class="delete" @click="deleteRequest()">Delete</Button>
         </div>
       </div>
     </div>
