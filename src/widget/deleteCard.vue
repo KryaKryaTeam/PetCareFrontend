@@ -9,9 +9,9 @@ const props = defineProps({
   idToDelete: String,
 })
 
-async function deleteRequest(){
-  await useDeleteAnimals(props.idToDelete);
-  emit("delete", props.idToDelete)
+async function deleteRequest() {
+  await useDeleteAnimals(props.idToDelete)
+  emit('delete', props.idToDelete)
 }
 
 useModal(0.5)

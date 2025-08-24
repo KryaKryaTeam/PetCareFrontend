@@ -14,21 +14,32 @@ const emitClose = () => emit('close')
       <div class="modal-box">
         <div class="back-block">
           <Leftarrow />
-          <button class="invisible-btn" @click="emitClose"><span class="text-btn">back</span></button>
+          <button class="invisible-btn" @click="emitClose">
+            <span class="text-btn">back</span>
+          </button>
         </div>
         <div class="modal-text">Please select a board</div>
         <div id="block">
           <Slice :isFirst="true" />
-          <button @click="router.push({ name: 'create', query: { animal: 'dog' } })" class="invisible-btn">
-          <img src="/images/dog-icon.svg" class="img" />
+          <button
+            @click="router.push({ name: 'create', query: { animal: 'dog' } })"
+            class="invisible-btn"
+          >
+            <img src="/images/dog-icon.svg" class="img" />
           </button>
           <Slice :isFirst="false" class="img" />
-          <button @click="router.push({ name: 'create', query: { animal: 'dog' } })" class="invisible-btn">
-          <img src="/images/cat-icon.svg" />
+          <button
+            @click="router.push({ name: 'create', query: { animal: 'dog' } })"
+            class="invisible-btn"
+          >
+            <img src="/images/cat-icon.svg" />
           </button>
           <Slice :isFirst="false" class="img" />
-          <button @click="router.push({ name: 'create', query: { animal: 'dog' } })" class="invisible-btn">
-          <img src="/images/bird-icon.svg" />
+          <button
+            @click="router.push({ name: 'create', query: { animal: 'dog' } })"
+            class="invisible-btn"
+          >
+            <img src="/images/bird-icon.svg" />
           </button>
         </div>
       </div>

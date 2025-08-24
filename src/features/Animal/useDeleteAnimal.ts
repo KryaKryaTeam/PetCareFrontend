@@ -1,4 +1,4 @@
-import useUserStore from "@/stores/User/userStore"
+import useUserStore from '@/stores/User/userStore'
 
 const useDeleteAnimals = async (id: string) => {
   const user = useUserStore()

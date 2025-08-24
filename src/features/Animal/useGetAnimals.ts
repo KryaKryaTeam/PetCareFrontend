@@ -1,6 +1,5 @@
 import useUserStore from '@/stores/User/userStore'
 
-
 const useGetAnimals = async () => {
   const user = useUserStore()
   try {
