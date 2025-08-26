@@ -7,11 +7,9 @@ import useDeleteAnimals from '@/features/Animal/useDeleteAnimal'
 
 vi.mock('@/features/Animal/useDeleteAnimal', () => {
   return {
-    default: vi.fn(() => Promise.resolve())
+    default: vi.fn(() => Promise.resolve()),
   }
 })
-
-
 
 describe('deleteCard.vue', () => {
   beforeEach(() => {
@@ -21,7 +19,7 @@ describe('deleteCard.vue', () => {
 
   it('renders two buttons (Cancel, Delete)', () => {
     const wrapper = mount(deleteCard, {
-      props: { idToDelete: '123' }
+      props: { idToDelete: '123' },
     })
     const buttons = wrapper.findAllComponents(Button)
     expect(buttons).toHaveLength(2)
@@ -29,7 +27,7 @@ describe('deleteCard.vue', () => {
 
   it('emits cancel when cancel button clicked', async () => {
     const wrapper = mount(deleteCard, {
-      props: { idToDelete: '123' }
+      props: { idToDelete: '123' },
     })
     const buttons = wrapper.findAllComponents(Button)
     await buttons[0].trigger('click')
@@ -38,7 +36,7 @@ describe('deleteCard.vue', () => {
 
   it('calls useDeleteAnimals and emits delete when delete button clicked', async () => {
     const wrapper = mount(deleteCard, {
-      props: { idToDelete: 'abc' }
+      props: { idToDelete: 'abc' },
     })
     const buttons = wrapper.findAllComponents(Button)
 

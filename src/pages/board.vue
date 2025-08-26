@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import useGetAnimals from '@/features/Animal/useGetAnimals'
+
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
-import useUserStore from '@/stores/User/userStore'
+import useAnimalStore from '@/stores/animalStore'
 
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import AddAnimalModal from '@/widget/addAnimalModal.vue'
 import BoardHeader from '@/widget/boardHeader.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
-import { onMounted, ref } from 'vue'
-const pets = ref<any[]>([])
+import {  onMounted, ref } from 'vue'
+const animal = useAnimalStore()
 const idToDelete = ref<string | null>(null)
 const isDeleteDark = ref(false)
 const isAddDark = ref(false)
 onMounted(async () => {
-  pets.value = await useGetAnimals().then((object) => object.animals)
-  console.log(pets.value)
+  await animal.getAnimalList()
+  console.log(animal.AnimalList)
 })
 const toggleDeleteBackdrop = (id?: string) => {
   idToDelete.value = id ?? null
@@ -23,7 +23,7 @@ const toggleDeleteBackdrop = (id?: string) => {
 }
 
 const deleteCard = (id: number) => {
-  pets.value = pets.value.filter((e) => e._id !== id)
+  animal.deleteAnimal(id.toString())
   toggleDeleteBackdrop()
 }
 const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
@@ -35,7 +35,7 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
     <div class="root">
       <ContainerBoard class="grid">
         <PetCard
-          v-for="(pet, index) in pets"
+          v-for="(pet, index) in animal.AnimalList"
           :key="index"
           :id="pet._id"
           :name="pet.name"
