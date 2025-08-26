@@ -4,7 +4,7 @@ import './global.css'
 import App from './App.vue'
 import router from './app/router'
 import vue3GoogleLogin from 'vue3-google-login'
-import useUserStore from './stores/User/userStore'
+import useUserStore from './stores/userStore'
 import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk'
 import { TracingInstrumentation } from '@grafana/faro-web-tracing'
 
@@ -29,22 +29,22 @@ async function AppDataSaveOnReload() {
 
 // grafana
 
-initializeFaro({
-  url: `${import.meta.env.VITE_GRAFANA_ENDPOINT}`,
-  app: {
-    name: 'Petcare',
-    version: '1.0.0',
-    environment: 'production',
-  },
+// initializeFaro({
+//   url: `${import.meta.env.VITE_GRAFANA_ENDPOINT}`,
+//   app: {
+//     name: 'Petcare',
+//     version: '1.0.0',
+//     environment: 'production',
+//   },
 
-  instrumentations: [
-    // Mandatory, omits default instrumentations otherwise.
-    ...getWebInstrumentations(),
+//   instrumentations: [
+//     // Mandatory, omits default instrumentations otherwise.
+//     ...getWebInstrumentations(),
 
-    // Tracing package to get end-to-end visibility for HTTP requests.
-    new TracingInstrumentation(),
-  ],
-})
+//     // Tracing package to get end-to-end visibility for HTTP requests.
+//     new TracingInstrumentation(),
+//   ],
+// })
 
 const app = createApp(App)
 
