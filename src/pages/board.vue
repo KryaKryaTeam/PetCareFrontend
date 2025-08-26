@@ -8,24 +8,23 @@ import AddAnimalModal from '@/widget/addAnimalModal.vue'
 import BoardHeader from '@/widget/boardHeader.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
+import { storeToRefs } from 'pinia'
 import {  onMounted, ref } from 'vue'
-const animal = useAnimalStore()
+
+const animal = useAnimalStore();
+const { AnimalList } = storeToRefs(animal)
 const idToDelete = ref<string | null>(null)
 const isDeleteDark = ref(false)
 const isAddDark = ref(false)
 onMounted(async () => {
   await animal.getAnimalList()
-  console.log(animal.AnimalList)
+  console.log(AnimalList.value)
 })
 const toggleDeleteBackdrop = (id?: string) => {
   idToDelete.value = id ?? null
   isDeleteDark.value = id !== undefined
 }
 
-const deleteCard = (id: number) => {
-  animal.deleteAnimal(id.toString())
-  toggleDeleteBackdrop()
-}
 const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
 </script>
 
@@ -35,7 +34,7 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
     <div class="root">
       <ContainerBoard class="grid">
         <PetCard
-          v-for="(pet, index) in animal.AnimalList"
+          v-for="(pet, index) in AnimalList"
           :key="index"
           :id="pet._id"
           :name="pet.name"
@@ -52,7 +51,7 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
       v-if="isDeleteDark"
       :id-to-delete="idToDelete"
       @cancel="() => toggleDeleteBackdrop()"
-      @delete="(id) => deleteCard(id)"
+      @delete="(id) => toggleDeleteBackdrop()"
     />
     <AddAnimalModal v-if="isAddDark" @close="toggeAddBackdrop()" />
   </div>

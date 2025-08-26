@@ -56,6 +56,7 @@ export interface IAnimal {
   async function deleteAnimal(id: string) {
     const user = useUserStore()
     try {
+
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal/${id}`, {
         method: "DELETE",
         credentials: "include",
@@ -66,16 +67,16 @@ export interface IAnimal {
 
       if (!res.ok) {
         if (res.status === 401) {
+          console.debug("because refresh")
           await user.refresh()
           return await deleteAnimal(id)
         }
         throw new Error(`Request failed with status ${res.status}`)
       }
 
-      // ✅ mutate store state directly
-      AnimalList.value = AnimalList.value.filter(a => a._id !== id)
 
-      return await res.json()
+      AnimalList.value = AnimalList.value.filter(a => a._id !== id)
+      console.debug(AnimalList)
     } catch (err) {
       console.error("deleteAnimal failed:", err)
       throw err
