@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
 import useAnimalStore from '@/stores/animalStore'
 
@@ -9,9 +8,9 @@ import BoardHeader from '@/widget/boardHeader.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
 import { storeToRefs } from 'pinia'
-import {  onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const animal = useAnimalStore();
+const animal = useAnimalStore()
 const { AnimalList } = storeToRefs(animal)
 const idToDelete = ref<string | null>(null)
 const isDeleteDark = ref(false)

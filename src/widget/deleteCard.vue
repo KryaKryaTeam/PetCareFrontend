@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import useModal from '@/features/composebles/useModal'
 import Button from '@/shared/ui/button.vue'
-import useAnimalStore from '@/stores/animalStore';
+import useAnimalStore from '@/stores/animalStore'
 
 const emit = defineEmits(['cancel', 'delete'])
-const animal = useAnimalStore();
+const animal = useAnimalStore()
 
 const props = defineProps({
   idToDelete: String,

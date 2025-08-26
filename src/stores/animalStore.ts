@@ -22,8 +22,7 @@ export interface IAnimal {
   status: 'active' | 'archived'
 }
 
-
- const useAnimalStore = defineStore("animal", () => {
+const useAnimalStore = defineStore('animal', () => {
   // --- state ---
   const AnimalList = ref<IAnimal[]>([])
 
@@ -32,7 +31,7 @@ export interface IAnimal {
     const user = useUserStore()
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
-        credentials: "include",
+        credentials: 'include',
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },
@@ -46,9 +45,9 @@ export interface IAnimal {
         throw new Error(`Request failed with status ${res.status}`)
       }
 
-      AnimalList.value = await res.json().then(object => object.animals)
+      AnimalList.value = await res.json().then((object) => object.animals)
     } catch (err) {
-      console.error("getAnimalList failed:", err)
+      console.error('getAnimalList failed:', err)
       throw err
     }
   }
@@ -56,10 +55,9 @@ export interface IAnimal {
   async function deleteAnimal(id: string) {
     const user = useUserStore()
     try {
-
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal/${id}`, {
-        method: "DELETE",
-        credentials: "include",
+        method: 'DELETE',
+        credentials: 'include',
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },
@@ -67,18 +65,17 @@ export interface IAnimal {
 
       if (!res.ok) {
         if (res.status === 401) {
-          console.debug("because refresh")
+          console.debug('because refresh')
           await user.refresh()
           return await deleteAnimal(id)
         }
         throw new Error(`Request failed with status ${res.status}`)
       }
 
-
-      AnimalList.value = AnimalList.value.filter(a => a._id !== id)
+      AnimalList.value = AnimalList.value.filter((a) => a._id !== id)
       console.debug(AnimalList)
     } catch (err) {
-      console.error("deleteAnimal failed:", err)
+      console.error('deleteAnimal failed:', err)
       throw err
     }
   }
