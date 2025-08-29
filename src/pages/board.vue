@@ -4,7 +4,7 @@ import useAnimalStore from '@/stores/animalStore'
 
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import AddAnimalModal from '@/widget/addAnimalModal.vue'
-import BoardHeader from '@/widget/headers/headerDashboard.vue'
+import headerDashboard from '@/widget/headers/headerDashboard.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
 import { storeToRefs } from 'pinia'
@@ -31,7 +31,7 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
 
 <template>
   <main class="RootElementWithModalLogic">
-    <BoardHeader />
+    <headerDashboard />
     <div class="root">
       <ContainerBoard class="grid">
         <PetCard
@@ -43,15 +43,6 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
           @delete="() => toggleDeleteBackdrop(pet._id)"
         />
         <AddAnimalCard @add="() => toggeAddBackdrop()" />
-        <button
-          @click="
-            async () => {
-              user.requestProfile()
-            }
-          "
-        >
-          checkProfile
-        </button>
       </ContainerBoard>
     </div>
   </main>

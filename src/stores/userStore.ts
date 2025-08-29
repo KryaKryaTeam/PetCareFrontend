@@ -15,24 +15,51 @@ interface IProfile {
 const useUserStore = defineStore('user', () => {
   const accessToken = ref<null | unknown | string>(null)
   const profile = ref<IProfile>()
+  const isInRefresh = ref<{ state: boolean; endedWithError: boolean }>({
+    state: false,
+    endedWithError: false,
+  })
 
   function newValueAccessToken(newValue: string) {
     accessToken.value = newValue
   }
   async function refresh() {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/refresh`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'content-type': 'application/json',
-      },
+    if (!isInRefresh.value.state) {
+      isInRefresh.value.state = true
+      isInRefresh.value.endedWithError = false
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/refresh`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+
+      if (!res.ok) {
+        isInRefresh.value.state = false
+        isInRefresh.value.endedWithError = true
+        await errorHandler(res)
+      }
+
+      const data = await res.json()
+      isInRefresh.value.state = false
+      accessToken.value = data.authorization
+      console.debug(`save ${accessToken.value}`)
+      return
+    }
+    const pr = new Promise((resolve, reject) => {
+      let interval = setInterval(() => {
+        const user = useUserStore()
+        console.debug('interval')
+        if (!user.isInRefresh.state) {
+          clearInterval(interval)
+          if (user.isInRefresh.endedWithError) return reject('Refresh is failed!')
+          else return resolve(0)
+        }
+      }, 1000)
     })
 
-    if (!res.ok) await errorHandler(res)
-
-    const data = await res.json()
-    accessToken.value = data.authorization
-    console.debug(`save ${accessToken.value}`)
+    return pr
   }
 
   async function requestProfile() {
@@ -48,13 +75,10 @@ const useUserStore = defineStore('user', () => {
     }, 3)
 
     const profile_ = {
-      ...res,
-      createdAt: new Date(res.createdAt),
-      lastLogin: new Date(res.lastLogin),
-      avatar: res.avatar.replace(
-        '%backend%',
-        import.meta.env.VITE_BACKEND_URL.replace('/api', null),
-      ),
+      ...res.profile,
+      createdAt: new Date(res.profile.createdAt),
+      lastLogin: new Date(res.profile.lastLogin),
+      avatar: res.profile.avatar.replace('%backend%', ''),
     }
 
     profile.value = profile_
@@ -64,6 +88,8 @@ const useUserStore = defineStore('user', () => {
     newValueAccessToken,
     refresh,
     requestProfile,
+    profile,
+    isInRefresh,
   }
 })
 

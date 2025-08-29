@@ -11,11 +11,11 @@ export async function makeRequest(
 
   const res = await fetchFunction(accessToken)
 
-  if (!res.ok) {
+  if (!res.ok && try_ > 0) {
     switch (res.status) {
       case 401: {
         await user.refresh()
-        return await makeRequest(fetchFunction, try_ - 1)
+        return await makeRequest(fetchFunction, 1)
         break
       }
       case 408: {
@@ -33,6 +33,9 @@ export async function makeRequest(
         break
       }
     }
+  }
+  if (try_ <= 0) {
+    return errorHandler(res)
   }
 
   return await res.json()
