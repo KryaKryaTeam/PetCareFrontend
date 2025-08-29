@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import DeleteCard from '@/widget/deleteCard.vue'
-import BoardHeader from '@/widget/boardHeader.vue'
+import BoardHeader from '@/widget/headers/headerDashboard.vue'
 import useModal from '@/features/composebles/useModal'
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import AddAnimalModal from '@/widget/addAnimalModal.vue'

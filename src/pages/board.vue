@@ -4,13 +4,15 @@ import useAnimalStore from '@/stores/animalStore'
 
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
 import AddAnimalModal from '@/widget/addAnimalModal.vue'
-import BoardHeader from '@/widget/boardHeader.vue'
+import headerDashboard from '@/widget/headers/headerDashboard.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
+import useUserStore from '@/stores/userStore'
 
 const animal = useAnimalStore()
+const user = useUserStore()
 const { AnimalList } = storeToRefs(animal)
 const idToDelete = ref<string | null>(null)
 const isDeleteDark = ref(false)
@@ -29,7 +31,7 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
 
 <template>
   <main class="RootElementWithModalLogic">
-    <BoardHeader />
+    <headerDashboard />
     <div class="root">
       <ContainerBoard class="grid">
         <PetCard

@@ -1,12 +1,25 @@
+<script setup lang="ts">
+import useUserStore from '@/stores/userStore'
+import { ref } from 'vue'
+import { onMounted } from 'vue'
+
+const user = useUserStore()
+
+const image = ref<string>('')
+
+onMounted(async () => {
+  await user.requestProfile()
+  image.value = user.profile.avatar
+})
+</script>
+
 <template>
   <header>
     <div class="container">
       <router-link to="/app/board"><img src="/images/Logo.svg" class="logo" /></router-link>
 
-      <div class="icons">
-        <img src="/images/bell.svg" />
-        <img src="/images/Menu.svg" />
-        <img src="/images/Account.svg" />
+      <div class="icon">
+        <img class="avatar" :src="image" />
       </div>
     </div>
   </header>
@@ -28,5 +41,10 @@
 
 .logo {
   height: 40px;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
 }
 </style>

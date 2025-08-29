@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import useUserStore from './userStore'
-import type z from 'zod'
+import { makeRequest } from '@/shared/utils/networking/makeRequest'
 type Gender = 'male' | 'unknow' | 'female'
 export interface IAnimal {
   _v: number
@@ -39,55 +39,32 @@ const useAnimalStore = defineStore('animal', () => {
   // --- actions ---
   async function getAnimalList() {
     const user = useUserStore()
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
+
+    const res = await makeRequest(async () => {
+      return await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
         credentials: 'include',
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },
       })
+    }, 3)
 
-      if (!res.ok) {
-        if (res.status === 401) {
-          await user.refresh()
-          return await getAnimalList()
-        }
-        throw new Error(`Request failed with status ${res.status}`)
-      }
-
-      AnimalList.value = await res.json().then((object) => object.animals)
-    } catch (err) {
-      console.error('getAnimalList failed:', err)
-      throw err
-    }
+    AnimalList.value = res.animals
   }
 
   async function deleteAnimal(id: string) {
-    const user = useUserStore()
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal/${id}`, {
+    const res = await makeRequest(async (accessToken) => {
+      return await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal/${id}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
-          authorization: `Bearer ${user.accessToken}`,
+          authorization: `Bearer ${accessToken}`,
         },
       })
+    }, 3)
 
-      if (!res.ok) {
-        if (res.status === 401) {
-          console.debug('because refresh')
-          await user.refresh()
-          return await deleteAnimal(id)
-        }
-        throw new Error(`Request failed with status ${res.status}`)
-      }
-
-      AnimalList.value = AnimalList.value.filter((a) => a._id !== id)
-      console.debug(AnimalList)
-    } catch (err) {
-      console.error('deleteAnimal failed:', err)
-      throw err
-    }
+    AnimalList.value = AnimalList.value.filter((a) => a._id !== id)
+    console.debug(AnimalList)
   }
 
   async function createAnimal(AnimalObjectRequest: IAnimalRequest) {
