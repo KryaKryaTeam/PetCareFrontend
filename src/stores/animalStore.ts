@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import useUserStore from './userStore'
-import type z from 'zod';
-type Gender = "male" | "unknow" | "female";
+import type z from 'zod'
+type Gender = 'male' | 'unknow' | 'female'
 export interface IAnimal {
   _v: number
   _id: string
@@ -22,14 +22,14 @@ export interface IAnimal {
   notes?: string[]
   status: 'active' | 'archived'
 }
-interface IAnimalRequest{
-  name: String,
-  breed: Object,
-  animaltype: Object,
-  birthDate: Date,
-  isSterilized: boolean,
-  avatar: String,
-  gender: Gender,
+interface IAnimalRequest {
+  name: String
+  breed: Object
+  animaltype: Object
+  birthDate: Date
+  isSterilized: boolean
+  avatar: String
+  gender: Gender
   chipId: String
 }
 const useAnimalStore = defineStore('animal', () => {
@@ -91,18 +91,18 @@ const useAnimalStore = defineStore('animal', () => {
   }
 
   async function createAnimal(AnimalObjectRequest: IAnimalRequest) {
-    const user = useUserStore();
+    const user = useUserStore()
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
-        method: "POST",
+        method: 'POST',
         credentials: 'include',
         headers: {
           authorization: `Bearer ${user.accessToken}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(AnimalObjectRequest)
+        body: JSON.stringify(AnimalObjectRequest),
       })
-       if (!res.ok) {
+      if (!res.ok) {
         if (res.status === 401) {
           console.debug('because refresh')
           await user.refresh()
@@ -123,6 +123,5 @@ const useAnimalStore = defineStore('animal', () => {
     createAnimal,
   }
 })
-
 
 export default useAnimalStore

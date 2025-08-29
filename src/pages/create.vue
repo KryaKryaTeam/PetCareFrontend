@@ -2,7 +2,6 @@
 import useGetListBreed from '@/features/useGetListBreed'
 import { onMounted, ref } from 'vue'
 
-
 const animalType = new URLSearchParams(document.location.search).get('animal')
 const BreedCards = ref<any>([])
 onMounted(async () => {
@@ -10,8 +9,5 @@ onMounted(async () => {
   BreedCards.value = await useGetListBreed(animalType)
   console.debug(BreedCards.value)
 })
-
 </script>
-<template>
-  
-</template>
+<template></template>
