@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
 import { useUiStore } from '@/stores/uiStateStore'
-import DeleteCard from '@/widget/deleteCard.vue'
 import HeaderDashboard from '@/widget/headers/headerDashboard.vue'
+import Aside from '@/widget/modals/aside.vue'
 import DeleteModal from '@/widget/modals/deleteModal.vue'
 import { RouterView } from 'vue-router'
 
@@ -10,6 +10,7 @@ const uiStore = useUiStore()
 </script>
 
 <template>
+  <Aside />
   <div :class="['darkness', { toggle: !uiStore.darknessState }]">
     <DeleteModal />
   </div>

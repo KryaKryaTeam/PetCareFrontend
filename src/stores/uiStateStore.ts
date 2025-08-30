@@ -6,6 +6,7 @@ export const useUiStore = defineStore('ui', () => {
   //--state--
   const darknessState = ref<boolean>(false)
   const deleteDialog = ref<{ active: boolean; _id: string }>({ active: false, _id: '' })
+  const asideState = ref<boolean>(false)
 
   //--action--
   function toggleDarkness() {
@@ -23,6 +24,9 @@ export const useUiStore = defineStore('ui', () => {
     darknessState.value = false
     deleteDialog.value = { active: false, _id: '' }
   }
+  function toggleAside() {
+    asideState.value = !asideState.value
+  }
 
   return {
     resetAllStates,
@@ -31,5 +35,7 @@ export const useUiStore = defineStore('ui', () => {
     toggleDarkness,
     onnDeleteDialog,
     offDeleteDialog,
+    asideState,
+    toggleAside,
   }
 })
