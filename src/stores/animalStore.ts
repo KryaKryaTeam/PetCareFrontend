@@ -34,22 +34,24 @@ interface IAnimalRequest {
 }
 const useAnimalStore = defineStore('animal', () => {
   // --- state ---
-  const AnimalList = ref<IAnimal[]>([])
+  const AnimalList = ref<Map<string, IAnimal>>(new Map())
 
   // --- actions ---
   async function getAnimalList() {
     const user = useUserStore()
 
-    const res = await makeRequest(async () => {
+    const res = (await makeRequest(async () => {
       return await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
         credentials: 'include',
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },
       })
-    }, 3)
+    }, 3)) as { animals: IAnimal[] }
 
-    AnimalList.value = res.animals
+    res.animals.forEach((element) => {
+      AnimalList.value.set(element._id, element)
+    })
   }
 
   async function deleteAnimal(id: string) {
@@ -63,41 +65,45 @@ const useAnimalStore = defineStore('animal', () => {
       })
     }, 3)
 
-    AnimalList.value = AnimalList.value.filter((a) => a._id !== id)
+    AnimalList.value.delete(id)
     console.debug(AnimalList)
   }
 
+  async function changeAnimalStatus(_id: string, status: 'active' | 'archived') {
+    const res = await makeRequest(async (accessToken) => {
+      return await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal/${_id}/status/${status}`, {
+        method: 'PUT',
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+    }, 3)
+
+    const animal = AnimalList.value.get(_id)
+    AnimalList.value.set(_id, { ...animal, status: status })
+  }
+
   async function createAnimal(AnimalObjectRequest: IAnimalRequest) {
-    const user = useUserStore()
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
+    const res = await makeRequest(async (accessToken) => {
+      return await fetch(`${import.meta.env.VITE_BACKEND_URL}/animal`, {
         method: 'POST',
         credentials: 'include',
         headers: {
-          authorization: `Bearer ${user.accessToken}`,
+          authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(AnimalObjectRequest),
       })
-      if (!res.ok) {
-        if (res.status === 401) {
-          console.debug('because refresh')
-          await user.refresh()
-          return await createAnimal(AnimalObjectRequest)
-        }
-        throw new Error(`Request failed with status ${res.status}`)
-      }
-      AnimalList.value.push(res.animal)
-    } catch (err) {
-      console.error('createAnimal failed:', err)
-      throw err
-    }
+    }, 3)
+
+    AnimalList.value.set(res.animal._id, res.animal)
   }
   return {
     AnimalList,
     getAnimalList,
     deleteAnimal,
     createAnimal,
+    changeAnimalStatus,
   }
 })
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button from '@/shared/ui/button.vue'
+import { useUiStore } from '@/stores/uiStateStore'
 import { ref } from 'vue'
 
 const { _id, name, status, avatar } = defineProps({
@@ -11,12 +12,14 @@ const { _id, name, status, avatar } = defineProps({
 const emit = defineEmits(['delete', 'open'])
 const isInAction = ref<boolean>(false)
 
+const ui = useUiStore()
+
 function clickOpen() {
   isInAction.value = true
   let timeout = setTimeout(() => {
     isInAction.value = false
     clearTimeout(timeout)
-  }, 5000)
+  }, 1000)
   console.log('open')
   emit('open', _id)
 }
@@ -25,8 +28,9 @@ function clickDelete() {
   let timeout = setTimeout(() => {
     isInAction.value = false
     clearTimeout(timeout)
-  }, 5000)
+  }, 1000)
   console.log('delete')
+  ui.onnDeleteDialog(_id)
   emit('delete', _id)
 }
 </script>

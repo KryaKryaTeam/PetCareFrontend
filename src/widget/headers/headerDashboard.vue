@@ -46,5 +46,6 @@ onMounted(async () => {
 .avatar {
   height: 50px;
   width: 50px;
+  border-radius: 50%;
 }
 </style>

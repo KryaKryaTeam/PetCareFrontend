@@ -31,12 +31,12 @@ const emit = defineEmits(['click'])
     ]"
     :disabled="disabled"
     :style="{
-      width: fullWidth ? 'calc(100%-32px)' : 'max-content',
+      width: fullWidth ? `calc(100%-32px-${isOutline ? 6 : 0}px)` : 'max-content',
       fontSize: fontSize + 'px',
       fontWeight: fontWeight,
       maxHeight: maxHeight + 'px',
-      paddingTop: topPadding + 'px',
-      paddingBottom: topPadding + 'px',
+      paddingTop: topPadding - (isOutline ? 3 : 0) + 'px',
+      paddingBottom: topPadding - (isOutline ? 3 : 0) + 'px',
     }"
     type="button"
     @click="emit('click')"
@@ -54,6 +54,7 @@ const emit = defineEmits(['click'])
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 .btn.default:hover {
   background: #29b4c2;
@@ -65,7 +66,7 @@ const emit = defineEmits(['click'])
   background: none;
   color: #29b4c2;
   background: none;
-  border: 5px #29b4c2 solid;
+  border: 3px #29b4c2 solid;
 }
 .btn.dis.default {
   background: #aeaeb2;
@@ -79,7 +80,7 @@ const emit = defineEmits(['click'])
   background: none;
   color: #aeaeb2;
   background: none;
-  border: 5px #aeaeb2 solid;
+  border: 3px #aeaeb2 solid;
 }
 .btn.default {
   color: white;
@@ -92,6 +93,7 @@ const emit = defineEmits(['click'])
 .btn.outline {
   color: #209aa6;
   background: none;
-  border: 5px #209aa6 solid;
+  border: 3px #209aa6 solid;
+  box-sizing: border-box;
 }
 </style>
