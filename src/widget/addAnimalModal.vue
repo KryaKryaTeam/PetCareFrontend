@@ -1,12 +1,12 @@
-<script setup lang="ts">
-import Leftarrow from '@/shared/icon/leftarrow.vue'
-import Slice from '@/shared/ui/slice.vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-const emit = defineEmits(['close'])
+  <script setup lang="ts">
+  import Leftarrow from '@/shared/icon/leftarrow.vue'
+  import Slice from '@/shared/ui/slice.vue'
+  import { useRouter } from 'vue-router'
+  const router = useRouter()
+  const emit = defineEmits(['close'])
 
-const emitClose = () => emit('close')
-</script>
+  const emitClose = () => emit('close')
+  </script>
 
 <template>
   <Teleport to="body">
@@ -14,7 +14,7 @@ const emitClose = () => emit('close')
       <div class="modal-box">
         <div class="back-block">
           <Leftarrow />
-          <button class="invisible-btn" @click="emitClose">
+          <button class="invisible-btn" @click="emitClose" id="close-btn">
             <span class="text-btn">back</span>
           </button>
         </div>
@@ -29,14 +29,14 @@ const emitClose = () => emit('close')
           </button>
           <Slice :isFirst="false" class="img" />
           <button
-            @click="router.push({ name: 'create', query: { animal: 'dog' } })"
+            @click="router.push({ name: 'create', query: { animal: 'cat' } })"
             class="invisible-btn"
           >
             <img src="/images/cat-icon.svg" />
           </button>
           <Slice :isFirst="false" class="img" />
           <button
-            @click="router.push({ name: 'create', query: { animal: 'dog' } })"
+            @click="router.push({ name: 'create', query: { animal: 'bird' } })"
             class="invisible-btn"
           >
             <img src="/images/bird-icon.svg" />
