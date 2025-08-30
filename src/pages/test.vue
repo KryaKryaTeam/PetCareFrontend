@@ -4,8 +4,10 @@ import { ref } from 'vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import BoardHeader from '@/widget/headers/headerDashboard.vue'
 import useModal from '@/features/composebles/useModal'
-import AddAnimalCard from '@/widget/addAnimalCard.vue'
+import AddAnimalCard from '@/widget/animal_board/addAnimalCard.vue'
 import AddAnimalModal from '@/widget/addAnimalModal.vue'
+import PetCard from '@/widget/animal_board/petCard.vue'
+import Button from '@/shared/ui/button.vue'
 
 const isDark = ref(false)
 
@@ -21,6 +23,8 @@ const toggleBackdrop = () => {
   <div>
     <AddAnimalModal v-if="isDark" />
   </div>
+  <Button type_="outline" :fontSize="10">Test</Button>
+  <PetCard />
 </template>
 
 <style scoped>

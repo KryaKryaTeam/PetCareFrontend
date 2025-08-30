@@ -8,7 +8,7 @@
 .container {
   width: 100%;
   height: auto;
-  padding: 0% 10px;
+  padding: 0px 150px;
   box-sizing: border-box;
 }
 </style>

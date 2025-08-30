@@ -2,11 +2,11 @@
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
 import useAnimalStore from '@/stores/animalStore'
 
-import AddAnimalCard from '@/widget/addAnimalCard.vue'
+import AddAnimalCard from '@/widget/animal_board/addAnimalCard.vue'
 import AddAnimalModal from '@/widget/addAnimalModal.vue'
 import headerDashboard from '@/widget/headers/headerDashboard.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
-import PetCard from '@/widget/petCard.vue'
+import PetCard from '@/widget/animal_board/petCard.vue'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
 import useUserStore from '@/stores/userStore'
@@ -30,40 +30,36 @@ const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
 </script>
 
 <template>
-  <main class="RootElementWithModalLogic">
-    <headerDashboard />
-    <div class="root">
-      <ContainerBoard class="grid">
-        <PetCard
-          v-for="(pet, index) in AnimalList"
-          :key="index"
-          :id="pet._id"
-          :name="pet.name"
-          img-link="/images/testimg.png"
-          @delete="() => toggleDeleteBackdrop(pet._id)"
-        />
-        <AddAnimalCard @add="() => toggeAddBackdrop()" />
-      </ContainerBoard>
-    </div>
-  </main>
-
-  <div>
-    <DeleteCard
-      v-if="isDeleteDark"
-      :id-to-delete="idToDelete"
-      @cancel="() => toggleDeleteBackdrop()"
-      @delete="(id) => toggleDeleteBackdrop()"
+  <h2 class="welcome_title">Welcome, {{ user.profile ? user.profile.username : 'user' }}!</h2>
+  <div class="grid">
+    <PetCard
+      v-for="(pet, index) in AnimalList"
+      :key="index"
+      :_id="pet._id"
+      :name="pet.name"
+      :status="pet.status"
+      :avatar="pet.avatar"
+      @delete="() => toggleDeleteBackdrop(pet._id)"
     />
-    <AddAnimalModal v-if="isAddDark" @close="toggeAddBackdrop()" />
+    <AddAnimalCard @add="() => toggeAddBackdrop()" />
   </div>
 </template>
 
 <style lang="css" scoped>
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 10px;
-  column-gap: 5px;
-  padding-top: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 60px;
+  margin-top: 50px;
+}
+.welcome_title {
+  font-family: 'Montserrat';
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 10%;
+  color: #1f1f1f;
 }
 </style>

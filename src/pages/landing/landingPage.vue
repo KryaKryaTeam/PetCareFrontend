@@ -118,6 +118,10 @@ import Review from '@/shared/landing/Review.vue'
     color: #1f1f1f;
     .btnContent {
       width: 250px;
+      padding: 0%;
+      height: auto;
+      text-align: center;
+      margin: 0%;
     }
     .title {
       font-size: 50px;

@@ -10,6 +10,7 @@ import Test from '@/pages/test.vue'
 import MainToListing from '@/pages/redirects/mainToListing.vue'
 import ListingLayout from '@/pages/layouts/ListingLayout.vue'
 import AuthLayout from '@/pages/layouts/AuthLayout.vue'
+import DashboardLayout from '@/pages/layouts/DashboardLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,14 +74,21 @@ const router = createRouter({
       ],
     },
     {
-      path: '/app/create',
-      name: 'create',
-      component: Create,
-    },
-    {
       path: '/app/board',
-      name: 'board',
-      component: Board,
+      name: 'dashboard',
+      component: DashboardLayout,
+      children: [
+        {
+          path: '/create',
+          name: 'create',
+          component: Create,
+        },
+        {
+          path: '',
+          name: 'board',
+          component: Board,
+        },
+      ],
     },
     {
       path: '/t',

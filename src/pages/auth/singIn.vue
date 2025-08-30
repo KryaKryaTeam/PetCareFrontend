@@ -103,7 +103,14 @@ async function postForm() {
           name="password"
           required
         />
-        <Button :disabled="!isValid" :full-width="true" type="submit">Sign In</Button>
+        <Button
+          :disabled="!isValid"
+          :full-width="true"
+          type="submit"
+          type_="default"
+          :maxHeight="50"
+          >Sign In</Button
+        >
         <GoogleButtonAuth
           @error="
             (message) => {
