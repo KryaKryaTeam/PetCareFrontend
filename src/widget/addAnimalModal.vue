@@ -1,12 +1,12 @@
-  <script setup lang="ts">
-  import Leftarrow from '@/shared/icon/leftarrow.vue'
-  import Slice from '@/shared/ui/slice.vue'
-  import { useRouter } from 'vue-router'
-  const router = useRouter()
-  const emit = defineEmits(['close'])
+<script setup lang="ts">
+import Leftarrow from '@/shared/icon/leftarrow.vue'
+import Slice from '@/shared/ui/slice.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const emit = defineEmits(['close'])
 
-  const emitClose = () => emit('close')
-  </script>
+const emitClose = () => emit('close')
+</script>
 
 <template>
   <Teleport to="body">
