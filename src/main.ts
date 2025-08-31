@@ -31,7 +31,7 @@ async function AppDataSaveOnReload() {
 
 
 
-
+if(import.meta.env.MODE == "production"){
 
 
   initializeFaro({
@@ -51,7 +51,7 @@ async function AppDataSaveOnReload() {
     ],
   });
 
-
+}
 
 
 
