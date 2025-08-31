@@ -11,9 +11,13 @@
 
   height: 100%;
   max-height: 80px;
+  border-radius: 12px;
 }
 #text-container {
+  display: flex;
   font-family: 'Mulish', sans-serif;
+  flex-direction: column;
+  row-gap: 6.4px;
 }
 #img-container {
   display: flex;
@@ -36,18 +40,21 @@
 <template>
   <div id="main-container">
     <div id="img-container">
-      <img :src="props.imgUrl" alt="breed img" />
+      <AvatarGenerated words="sanya" />
     </div>
     <div id="text-container">
       <span id="name-container">
         {{ props.name }}
       </span>
-      <div id="type-container" style="margin-top: 0.4rem">{{ props.type }}</div>
+      <div id="type-container">{{ props.type }}</div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import AvatarGenerated from './avatarGenerated.vue'
+
 const props = defineProps({
+  id: String,
   name: String,
   type: String,
   imgUrl: String,

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import CreateCard from '@/shared/ui/create-card.vue'
+import CreateCard from '@/shared/ui/createCard.vue'
 </script>
 
 <template>
-  <CreateCard name="husky" type="dog" img-url="images/breed-img.png" />
+  <CreateCard id="1" name="abobus" type="dog" />
 </template>
 
 <style scoped></style>
