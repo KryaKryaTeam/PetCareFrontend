@@ -10,6 +10,7 @@ const { disabled, fullWidth } = defineProps({
     :class="['btn', { dis: disabled }]"
     :disabled="disabled"
     :style="{ width: fullWidth ? '100%' : 'max-content' }"
+    type="button"
   >
     <slot />
   </button>

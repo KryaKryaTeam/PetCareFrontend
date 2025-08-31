@@ -4,9 +4,9 @@ import './global.css'
 import App from './App.vue'
 import router from './app/router'
 import vue3GoogleLogin from 'vue3-google-login'
-import useUserStore from './stores/User/userStore'
-import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk';
-import { TracingInstrumentation } from '@grafana/faro-web-tracing';
+import useUserStore from './stores/userStore'
+import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk'
+import { TracingInstrumentation } from '@grafana/faro-web-tracing'
 
 async function AppDataSaveOnReload() {
   const user = useUserStore()
@@ -19,7 +19,7 @@ async function AppDataSaveOnReload() {
     const diffDays = diffMs / (1000 * 60 * 60 * 24)
 
     if (diffDays > 3) {
-      localStorage.setItem("hasRefresh", null)
+      localStorage.setItem('hasRefresh', null)
       router.push('/app/auth/singin')
     } else {
       await user.refresh()
@@ -28,6 +28,7 @@ async function AppDataSaveOnReload() {
 }
 
 // grafana
+
 
 
 
@@ -52,7 +53,6 @@ if(import.meta.env.MODE == "production"){
   });
 
 }
-
 
 
 const app = createApp(App)

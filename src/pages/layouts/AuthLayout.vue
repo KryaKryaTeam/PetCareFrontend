@@ -3,7 +3,7 @@
 import { useBackgroundImage } from '@/features/composebles/useBackgroundImage'
 import ContainerComp from '@/shared/containers/containerComp.vue'
 import FooterListing from '@/widget/footerListing.vue'
-import HeaderListing from '@/widget/headerListing.vue'
+import HeaderListing from '@/widget/headers/headerListing.vue'
 
 useBackgroundImage('/images/BackgroundAuth.png')
 </script>

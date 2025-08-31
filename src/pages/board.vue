@@ -1,56 +1,60 @@
 <script setup lang="ts">
-import useGetAnimals from '@/features/Animal/useGetAnimals'
 import ContainerBoard from '@/shared/containers/containerBoard.vue'
-import useUserStore from '@/stores/User/userStore'
+import useAnimalStore from '@/stores/animalStore'
 
 import AddAnimalCard from '@/widget/addAnimalCard.vue'
-import BoardHeader from '@/widget/boardHeader.vue'
+import AddAnimalModal from '@/widget/addAnimalModal.vue'
+import headerDashboard from '@/widget/headers/headerDashboard.vue'
 import DeleteCard from '@/widget/deleteCard.vue'
 import PetCard from '@/widget/petCard.vue'
+import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
-const pets = ref<any[]>([])
+import useUserStore from '@/stores/userStore'
+
+const animal = useAnimalStore()
+const user = useUserStore()
+const { AnimalList } = storeToRefs(animal)
 const idToDelete = ref<string | null>(null)
-const isDark = ref(false)
+const isDeleteDark = ref(false)
+const isAddDark = ref(false)
 onMounted(async () => {
-  pets.value = await useGetAnimals().then((object) => object.animals)
-  console.log(pets.value)
+  await animal.getAnimalList()
+  console.log(AnimalList.value)
 })
-const toggleBackdrop = (id?: string) => {
+const toggleDeleteBackdrop = (id?: string) => {
   idToDelete.value = id ?? null
-  isDark.value = id !== undefined
+  isDeleteDark.value = id !== undefined
 }
 
-const deleteCard = (id: number) => {
-  pets.value = pets.value.filter((e) => e._id !== id)
-  toggleBackdrop()
-}
+const toggeAddBackdrop = () => (isAddDark.value = !isAddDark.value)
 </script>
 
 <template>
   <main class="RootElementWithModalLogic">
-    <BoardHeader />
+    <headerDashboard />
     <div class="root">
       <ContainerBoard class="grid">
         <PetCard
-          v-for="(pet, index) in pets"
+          v-for="(pet, index) in AnimalList"
           :key="index"
           :id="pet._id"
           :name="pet.name"
           img-link="/images/testimg.png"
-          @delete="() => toggleBackdrop(pet._id)"
+          @delete="() => toggleDeleteBackdrop(pet._id)"
         />
-        <AddAnimalCard />
+        <AddAnimalCard @add="() => toggeAddBackdrop()" />
       </ContainerBoard>
     </div>
   </main>
 
   <div>
     <DeleteCard
-      v-if="isDark"
+      v-if="isDeleteDark"
       :id-to-delete="idToDelete"
-      @cancel="() => toggleBackdrop()"
-      @delete="(id) => deleteCard(id)"
+      @cancel="() => toggleDeleteBackdrop()"
+      @delete="(id) => toggleDeleteBackdrop()"
     />
+    <AddAnimalModal v-if="isAddDark" @close="toggeAddBackdrop()" />
   </div>
 </template>
 
