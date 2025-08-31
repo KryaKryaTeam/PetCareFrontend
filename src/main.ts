@@ -29,22 +29,31 @@ async function AppDataSaveOnReload() {
 
 // grafana
 
-// initializeFaro({
-//   url: `${import.meta.env.VITE_GRAFANA_ENDPOINT}`,
-//   app: {
-//     name: 'Petcare',
-//     version: '1.0.0',
-//     environment: 'production',
-//   },
 
-//   instrumentations: [
-//     // Mandatory, omits default instrumentations otherwise.
-//     ...getWebInstrumentations(),
 
-//     // Tracing package to get end-to-end visibility for HTTP requests.
-//     new TracingInstrumentation(),
-//   ],
-// })
+
+if(import.meta.env.MODE == "production"){
+
+
+  initializeFaro({
+    url: `${import.meta.env.VITE_GRAFANA_ENDPOINT}`,
+    app: {
+      name: 'Petcare',
+      version: '1.0.0',
+      environment: 'production'
+    },
+
+    instrumentations: [
+      // Mandatory, omits default instrumentations otherwise.
+      ...getWebInstrumentations(),
+
+      // Tracing package to get end-to-end visibility for HTTP requests.
+      new TracingInstrumentation(),
+    ],
+  });
+
+}
+
 
 const app = createApp(App)
 
