@@ -30,17 +30,14 @@ async function AppDataSaveOnReload() {
 // grafana
 
 
-
-
-if(import.meta.env.MODE == "production"){
-
+if (import.meta.env.MODE == 'production') {
 
   initializeFaro({
     url: `${import.meta.env.VITE_GRAFANA_ENDPOINT}`,
     app: {
       name: 'Petcare',
       version: '1.0.0',
-      environment: 'production'
+      environment: 'production',
     },
 
     instrumentations: [
@@ -50,8 +47,7 @@ if(import.meta.env.MODE == "production"){
       // Tracing package to get end-to-end visibility for HTTP requests.
       new TracingInstrumentation(),
     ],
-  });
-
+  })
 }
 
 
