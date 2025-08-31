@@ -4,7 +4,7 @@ import './global.css'
 import App from './App.vue'
 import router from './app/router'
 import vue3GoogleLogin from 'vue3-google-login'
-import useUserStore from './stores/User/userStore'
+import useUserStore from './stores/userStore'
 import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk'
 import { TracingInstrumentation } from '@grafana/faro-web-tracing'
 
@@ -29,7 +29,9 @@ async function AppDataSaveOnReload() {
 
 // grafana
 
+
 if (import.meta.env.MODE == 'production') {
+
   initializeFaro({
     url: `${import.meta.env.VITE_GRAFANA_ENDPOINT}`,
     app: {
@@ -47,6 +49,7 @@ if (import.meta.env.MODE == 'production') {
     ],
   })
 }
+
 
 const app = createApp(App)
 

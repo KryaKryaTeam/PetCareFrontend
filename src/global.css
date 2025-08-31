@@ -169,3 +169,8 @@ body {
   pointer-events: auto;
   z-index: 2;
 }
+
+.invisible-btn {
+  background: none;
+  border: none;
+}

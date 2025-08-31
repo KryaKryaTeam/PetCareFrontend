@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import useUserStore from '@/stores/User/userStore'
+import useUserStore from '@/stores/userStore'
 import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
 import Button from '@/shared/ui/button.vue'
 import CheckMask from '@/shared/ui/checkMask.vue'
