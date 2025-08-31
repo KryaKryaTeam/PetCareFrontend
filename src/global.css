@@ -393,6 +393,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Inter';
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
