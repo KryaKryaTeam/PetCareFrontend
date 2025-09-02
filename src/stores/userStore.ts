@@ -48,7 +48,7 @@ const useUserStore = defineStore('user', () => {
       return
     }
     const pr = new Promise((resolve, reject) => {
-      let interval = setInterval(() => {
+      const interval = setInterval(() => {
         const user = useUserStore()
         console.debug('interval')
         if (!user.isInRefresh.state) {

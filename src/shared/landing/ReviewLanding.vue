@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   imgUrl: { type: String, defualt: '' },
   content: { type: String, defualt: '' },

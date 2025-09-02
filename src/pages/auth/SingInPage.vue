@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import useUserStore from '@/stores/userStore'
-import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
-import Button from '@/shared/ui/button.vue'
-import Input from '@/shared/ui/input.vue'
-import { computed, provide, reactive, ref } from 'vue'
+import GoogleButtonAuth from '@/widget/GoogleButtonAuth.vue'
+import Button from '@/shared/ui/UiButton.vue'
+import Input from '@/shared/ui/UiInput.vue'
+import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import * as z from 'zod'
 
@@ -38,8 +38,8 @@ const isValid = computed(() => {
 })
 const errors = computed(() => {
   const result = schema.safeParse(form)
-  let errorsF = []
-  let errorsB = []
+  const errorsF = []
+  const errorsB = []
   result.error?.issues.forEach((el1) =>
     el1.path.forEach((el) => {
       if (!errorsF.includes(el)) errorsF.push(el)

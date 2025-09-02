@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from '@/shared/ui/button.vue'
+import Button from '@/shared/ui/UiButton.vue'
 import useAnimalStore from '@/stores/animalStore'
 import { useUiStore } from '@/stores/uiStateStore'
 

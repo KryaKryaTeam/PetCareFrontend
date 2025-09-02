@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import ContainerBoard from '@/shared/containers/containerBoard.vue'
 import useAnimalStore from '@/stores/animalStore'
 
-import AddAnimalCard from '@/widget/animal_board/addAnimalCard.vue'
-import PetCard from '@/widget/animal_board/petCard.vue'
+import AddAnimalCard from '@/widget/animal_board/AddAnimalCard.vue'
+import PetCard from '@/widget/animal_board/PetCard.vue'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import useUserStore from '@/stores/userStore'
-import { useUiStore } from '@/stores/uiStateStore'
 
 const animal = useAnimalStore()
 const user = useUserStore()
 const { AnimalList } = storeToRefs(animal)
-const ui = useUiStore()
 onMounted(async () => {
   await animal.getAnimalList()
   console.log(AnimalList.value)

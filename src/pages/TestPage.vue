@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import BoardHeader from '@/widget/headers/headerDashboard.vue'
-import PetCard from '@/widget/animal_board/petCard.vue'
-import Button from '@/shared/ui/button.vue'
+import BoardHeader from '@/widget/headers/HeaderDashboard.vue'
+import PetCard from '@/widget/animal_board/PetCard.vue'
+import Button from '@/shared/ui/UiButton.vue'
 
 const isDark = ref(false)
 

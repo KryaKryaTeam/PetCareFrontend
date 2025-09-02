@@ -6,8 +6,8 @@ export async function makeRequest(
   max_tryies: number,
 ) {
   const user = useUserStore()
-  let try_ = max_tryies
-  let accessToken: string = (user.accessToken as string) || 'none'
+  const try_ = max_tryies
+  const accessToken: string = (user.accessToken as string) || 'none'
 
   const res = await fetchFunction(accessToken)
 

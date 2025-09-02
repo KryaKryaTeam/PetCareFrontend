@@ -1,7 +1,16 @@
 <script setup lang="ts">
-import Button from '@/shared/ui/button.vue'
+import Button from '@/shared/ui/UiButton.vue'
 import { useUiStore } from '@/stores/uiStateStore'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import * as animejs from 'animejs'
+
+const targetRef = ref(null)
+const animation = animejs.animate(targetRef.value, {
+  duration: 1000,
+  frameRate: 30,
+  ease: 'inElastic',
+  scale: '+=.25',
+})
 
 const { _id, name, status, avatar } = defineProps({
   _id: { type: String, default: '' },
@@ -14,9 +23,13 @@ const isInAction = ref<boolean>(false)
 
 const ui = useUiStore()
 
+onMounted(() => {
+  animation.play()
+})
+
 function clickOpen() {
   isInAction.value = true
-  let timeout = setTimeout(() => {
+  const timeout = setTimeout(() => {
     isInAction.value = false
     clearTimeout(timeout)
   }, 1000)
@@ -25,7 +38,7 @@ function clickOpen() {
 }
 function clickDelete() {
   isInAction.value = true
-  let timeout = setTimeout(() => {
+  const timeout = setTimeout(() => {
     isInAction.value = false
     clearTimeout(timeout)
   }, 1000)
@@ -36,7 +49,7 @@ function clickDelete() {
 </script>
 
 <template>
-  <section :id="_id" class="card">
+  <section :id="_id" class="card" ref="targetRef">
     <img :src="avatar" class="avatar" />
     <div class="textContent">
       <div class="text">

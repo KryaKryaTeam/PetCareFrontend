@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { AlignVerticalJustifyEndIcon, Bell, PanelLeft } from 'lucide-vue-next'
-import HorizontalAnimalCard from '../cards/horizontalAnimalCard.vue'
+import { Bell } from 'lucide-vue-next'
+import HorizontalAnimalCard from '../cards/HorizontalAnimalCard.vue'
 import useAnimalStore from '@/stores/animalStore'
 import { useUiStore } from '@/stores/uiStateStore'
-import AsideController from '../controlls/asideController.vue'
+import AsideController from '../controlls/AsideController.vue'
 
 const animal = useAnimalStore()
 const ui = useUiStore()

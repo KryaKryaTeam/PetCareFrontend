@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import useUserStore from '@/stores/userStore'
-import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
-import Button from '@/shared/ui/button.vue'
-import CheckMask from '@/shared/ui/checkMask.vue'
-import Input from '@/shared/ui/input.vue'
-import { provide, ref } from 'vue'
+import GoogleButtonAuth from '@/widget/GoogleButtonAuth.vue'
+import Button from '@/shared/ui/UiButton.vue'
+import CheckMask from '@/shared/ui/CheckMask.vue'
+import Input from '@/shared/ui/UiInput.vue'
+import { ref } from 'vue'
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { z } from 'zod'
@@ -13,7 +13,6 @@ import { z } from 'zod'
 const user = useUserStore()
 const router = useRouter()
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const formSchema = z
   .object({
     username: z.string().min(3, 'Username is too short').max(150, 'Username is too long'),
@@ -51,8 +50,8 @@ const isValid = computed(() => {
 })
 const errors = computed(() => {
   const result = formSchema.safeParse(form)
-  let errorsF = []
-  let errorsB = []
+  const errorsF = []
+  const errorsB = []
   result.error?.issues.forEach((el1) =>
     el1.path.forEach((el) => {
       if (!errorsF.includes(el)) errorsF.push(el)

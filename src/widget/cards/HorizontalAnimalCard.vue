@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import AvatarGenerated from '@/shared/ui/avatarGenerated.vue'
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import AvatarGenerated from '@/shared/ui/AvatarGenerated.vue'
 
-const { id, status, name } = defineProps({
+const { status, name } = defineProps({
   id: { type: String, default: '' },
   status: { type: String, default: 'active' },
   name: { type: String, default: 'My cat' },

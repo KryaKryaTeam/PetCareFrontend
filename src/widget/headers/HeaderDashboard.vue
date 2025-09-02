@@ -2,7 +2,7 @@
 import useUserStore from '@/stores/userStore'
 import { ref } from 'vue'
 import { onMounted } from 'vue'
-import AsideController from '../controlls/asideController.vue'
+import AsideController from '../controlls/AsideController.vue'
 
 const user = useUserStore()
 
