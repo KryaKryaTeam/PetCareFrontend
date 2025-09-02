@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import AddAnimalCard from '@/widget/animal_board/addAnimalCard.vue'
+import AddAnimalCard from '@/widget/animal_board/AddAnimalCard.vue'
 describe('addAnimalCard compoennt test', () => {
   const wrapper = mount(AddAnimalCard)
 
