@@ -1,45 +1,9 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-import BoardHeader from '@/widget/headers/HeaderDashboard.vue'
-import PetCard from '@/widget/animal_board/PetCard.vue'
-import Button from '@/shared/ui/UiButton.vue'
-
-const isDark = ref(false)
-
-const toggleBackdrop = () => {
-  isDark.value = !isDark.value
-}
+import CreateCard from '@/shared/ui/createCard.vue'
 </script>
 
 <template>
-  <BoardHeader />
-  <div class="RootElementWithModalLogic"></div>
-  <button @click="toggleBackdrop">work</button>
-  <div>
-    <AddAnimalModal v-if="isDark" />
-  </div>
-  <Button type_="outline" :fontSize="10">Test</Button>
-  <PetCard />
+  <CreateCard id="1" name="abobus" type="dog" />
 </template>
 
-<style scoped>
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding-top: 15px;
-  column-gap: 19px;
-  row-gap: 19px;
-}
-
-.test-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-  padding: 10px 15px;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-}
-</style>
+<style scoped></style>
