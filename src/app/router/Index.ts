@@ -1,15 +1,16 @@
-import Board from '@/pages/board.vue'
-import Create from '@/pages/create.vue'
-import LandingPage from '@/pages/landing/landingPage.vue'
-import PrivacyPage from '@/pages/landing/privacyPage.vue'
-import TermsPage from '@/pages/landing/termsPage.vue'
-import SingUp from '@/pages/auth/singUp.vue'
+import Board from '@/pages/BoardPage.vue'
+// import Create from '@/pages/createPage.vue'
+import LandingPage from '@/pages/landing/LandingPage.vue'
+import PrivacyPage from '@/pages/landing/PrivacyPage.vue'
+import TermsPage from '@/pages/landing/TermsPage.vue'
+import SingUp from '@/pages/auth/SingUpPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import SingIn from '@/pages/auth/singIn.vue'
-import Test from '@/pages/test.vue'
-import MainToListing from '@/pages/redirects/mainToListing.vue'
+import SingIn from '@/pages/auth/SingInPage.vue'
+import Test from '@/pages/TestPage.vue'
+import MainToListing from '@/pages/redirects/MainToListing.vue'
 import ListingLayout from '@/pages/layouts/ListingLayout.vue'
 import AuthLayout from '@/pages/layouts/AuthLayout.vue'
+import DashboardLayout from '@/pages/layouts/DashboardLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,14 +74,16 @@ const router = createRouter({
       ],
     },
     {
-      path: '/app/create',
-      name: 'create',
-      component: Create,
-    },
-    {
       path: '/app/board',
-      name: 'board',
-      component: Board,
+      name: 'dashboard',
+      component: DashboardLayout,
+      children: [
+        {
+          path: '',
+          name: 'board',
+          component: Board,
+        },
+      ],
     },
     {
       path: '/t',

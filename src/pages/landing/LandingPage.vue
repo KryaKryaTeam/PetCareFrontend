@@ -1,9 +1,9 @@
-<script setup>
-import Card1 from '@/shared/landing/Card1.vue'
-import Card2 from '@/shared/landing/Card2.vue'
-import Button from '@/shared/ui/button.vue'
-import Card3 from '@/shared/landing/Card3.vue'
-import Review from '@/shared/landing/Review.vue'
+<script lang="ts" setup>
+import Card1 from '@/shared/landing/CardLanding1.vue'
+import Card2 from '@/shared/landing/CardLanding2.vue'
+import Button from '@/shared/ui/UiButton.vue'
+import Card3 from '@/shared/landing/CardLanding3.vue'
+import Review from '@/shared/landing/ReviewLanding.vue'
 </script>
 
 <template>
@@ -77,13 +77,13 @@ import Review from '@/shared/landing/Review.vue'
         imgUrl="/images/image2.png"
         content="“When my cat got sick, I remembered the old symptoms thanks to my notes in PetCare. It helped the vet figure things out faster.”"
         author="— Yurii, owner of Lord the cat"
-        rating="4"
+        :rating="4"
       />
       <Review
         imgUrl="/images/image3.png"
         content="“With PetCare, I finally started keeping track of all my dog’s health records. Everything’s at my fingertips, and nothing gets forgotten.”"
         author="— Oksana, owner of a spaniel named Richie"
-        rating="5"
+        :rating="5"
       />
     </div>
   </section>
@@ -118,6 +118,10 @@ import Review from '@/shared/landing/Review.vue'
     color: #1f1f1f;
     .btnContent {
       width: 250px;
+      padding: 0%;
+      height: auto;
+      text-align: center;
+      margin: 0%;
     }
     .title {
       font-size: 50px;

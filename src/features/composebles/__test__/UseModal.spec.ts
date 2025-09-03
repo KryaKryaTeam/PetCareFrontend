@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import useModal from '../useModal'
+import useModal from '../UseModal'
 import { mount } from '@vue/test-utils'
 import { it, describe, expect } from 'vitest'
 

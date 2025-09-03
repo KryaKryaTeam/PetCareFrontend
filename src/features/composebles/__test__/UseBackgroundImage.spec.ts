@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { useBackgroundImage } from '../useBackgroundImage'
+import { useBackgroundImage } from '../UseBackgroundImage'
 import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 

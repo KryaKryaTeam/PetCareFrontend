@@ -2,6 +2,7 @@
 import useUserStore from '@/stores/userStore'
 import { ref } from 'vue'
 import { onMounted } from 'vue'
+import AsideController from '../controlls/AsideController.vue'
 
 const user = useUserStore()
 
@@ -16,7 +17,10 @@ onMounted(async () => {
 <template>
   <header>
     <div class="container">
-      <router-link to="/app/board"><img src="/images/Logo.svg" class="logo" /></router-link>
+      <div class="leftGroup">
+        <AsideController />
+        <router-link to="/app/board"><img src="/images/Logo.svg" class="logo" /></router-link>
+      </div>
 
       <div class="icon">
         <img class="avatar" :src="image" />
@@ -34,6 +38,11 @@ onMounted(async () => {
   background-color: #faf6ee;
 }
 
+.leftGroup {
+  display: flex;
+  column-gap: 50px;
+}
+
 .icons {
   display: flex;
   gap: 50px;
@@ -46,5 +55,6 @@ onMounted(async () => {
 .avatar {
   height: 50px;
   width: 50px;
+  border-radius: 50%;
 }
 </style>

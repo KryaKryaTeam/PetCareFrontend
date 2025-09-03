@@ -1,45 +1,57 @@
 <script lang="ts" setup>
 import useUserStore from '@/stores/userStore'
-import GoogleButtonAuth from '@/widget/googleButtonAuth.vue'
-import Button from '@/shared/ui/button.vue'
-import Input from '@/shared/ui/input.vue'
-import { computed, provide, reactive, ref } from 'vue'
+import GoogleButtonAuth from '@/widget/GoogleButtonAuth.vue'
+import Button from '@/shared/ui/UiButton.vue'
+import CheckMask from '@/shared/ui/CheckMask.vue'
+import Input from '@/shared/ui/UiInput.vue'
+import { ref } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import * as z from 'zod'
+import { z } from 'zod'
 
-const schema = z.object({
-  username: z.string().min(3, 'Username is too short').max(150, 'Username is too long'),
-  password: z
-    .string()
-    .min(6, 'Password is too short')
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).*$/,
-      'Password must have one lowercase letter, oner uppercase letter, one secial symbol ( _ - . $ % ! @ ) and one digit',
-    ),
-})
-// interfaces
-interface Form {
-  username: string
-  password: string
-}
-// data
-const form: Form = reactive({
-  username: '',
-  password: '',
-})
+// Access Pinia store
 const user = useUserStore()
 const router = useRouter()
 
-const error = ref('')
+const formSchema = z
+  .object({
+    username: z.string().min(3, 'Username is too short').max(150, 'Username is too long'),
+    email: z.string().email('Invalid email'),
+    password: z
+      .string()
+      .min(6, 'Password too short')
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).*$/,
+        'Password must have one lowercase letter, oner uppercase letter, one secial symbol ( _ - . $ % ! @ ) and one digit',
+      ),
+    repeat: z.string(),
+    checked: z.boolean(),
+  })
+  .refine((data) => data.password === data.repeat, {
+    message: 'Passwords do not match',
+    path: ['repeat'],
+  })
 
+// Define form type
+type Form = z.infer<typeof formSchema>
+
+const error = ref('')
+// Reactive form object
+const form = reactive<Form>({
+  username: '',
+  email: '',
+  password: '',
+  repeat: '',
+  checked: false,
+})
 const isValid = computed(() => {
-  const result = schema.safeParse(form)
-  return result.success
+  const result = formSchema.safeParse(form)
+  return result.success && result.data.checked
 })
 const errors = computed(() => {
-  const result = schema.safeParse(form)
-  let errorsF = []
-  let errorsB = []
+  const result = formSchema.safeParse(form)
+  const errorsF = []
+  const errorsB = []
   result.error?.issues.forEach((el1) =>
     el1.path.forEach((el) => {
       if (!errorsF.includes(el)) errorsF.push(el)
@@ -49,10 +61,11 @@ const errors = computed(() => {
   return { names: errorsF, messages: errorsB }
 })
 
-// functions
+// Handle form submission
 async function postForm() {
   try {
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login/self`, {
+    console.log('Submitting form:', JSON.stringify(form))
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/register/self`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -62,9 +75,6 @@ async function postForm() {
     })
     const data = await response.json()
     if (!response.ok) {
-      if (response.status == 401) {
-        error.value = data?.message
-      }
       if (response.status == 400) {
         error.value = data?.message
       }
@@ -75,7 +85,7 @@ async function postForm() {
     localStorage.setItem('RefreshTime', new Date().toISOString())
     router.push('/app/board')
   } catch (error) {
-    console.log(error)
+    console.error('Sign-up error:', error)
   }
 }
 </script>
@@ -83,7 +93,8 @@ async function postForm() {
 <template>
   <div class="centred">
     <div class="form">
-      <h1 class="title">Login into account</h1>
+      <h1 class="title">Creating an account</h1>
+
       <form @submit.prevent="postForm" class="formComp">
         <Input
           v-model="form.username"
@@ -95,15 +106,49 @@ async function postForm() {
           required
         />
         <Input
+          v-model="form.email"
+          placeholder="Email"
+          :is-error="errors.names.includes('email')"
+          :error-message="errors.messages.find((a) => a.name == 'email')?.message"
+          name="email"
+          autocomplete="off"
+          required
+        />
+        <Input
           v-model="form.password"
           type="password"
-          placeholder="Password"
           :is-error="errors.names.includes('password')"
           :error-message="errors.messages.find((a) => a.name == 'password')?.message"
+          placeholder="Password"
           name="password"
           required
         />
-        <Button :disabled="!isValid" :full-width="true" type="submit">Sign In</Button>
+        <Input
+          v-model="form.repeat"
+          type="password"
+          :is-error="errors.names.includes('repeat')"
+          :error-message="errors.messages.find((a) => a.name == 'repeat')?.message"
+          placeholder="Repeat please"
+          name="repeat"
+          required
+        />
+
+        <label class="checkBox">
+          <input type="checkbox" class="hidden" v-model="form.checked" />
+          <CheckMask :checked="form.checked" />
+          <span class="disc">
+            I agree to the
+            <router-link to="/listing/terms">
+              <span class="disc-bold">Terms of Use</span>
+            </router-link>
+            and
+            <router-link to="/listing/privacy">
+              <span class="disc-bold">Privacy Policy</span>
+            </router-link>
+          </span>
+        </label>
+
+        <Button :disabled="!isValid" id="subbtn" type="submit" :full-width="true">Sign up</Button>
         <GoogleButtonAuth
           @error="
             (message) => {
@@ -115,9 +160,9 @@ async function postForm() {
         <p class="error" v-if="error.length > 0">{{ error }}</p>
 
         <p class="disc">
-          Don't have an account?
-          <router-link to="/app/auth/singup">
-            <span class="disc-bold">Sign up</span>
+          Have an account?
+          <router-link to="/app/auth/singin">
+            <span class="disc-bold">Sign in</span>
           </router-link>
         </p>
       </form>

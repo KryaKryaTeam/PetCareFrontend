@@ -1,5 +1,5 @@
-<script setup>
-import router from '@/app/router'
+<script lang="ts" setup>
+import router from '@/app/router/Index'
 import { onMounted } from 'vue'
 
 onMounted(() => {
