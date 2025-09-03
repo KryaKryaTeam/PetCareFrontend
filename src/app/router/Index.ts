@@ -11,6 +11,7 @@ import MainToListing from '@/pages/redirects/MainToListing.vue'
 import ListingLayout from '@/pages/layouts/ListingLayout.vue'
 import AuthLayout from '@/pages/layouts/AuthLayout.vue'
 import DashboardLayout from '@/pages/layouts/DashboardLayout.vue'
+import CreatePage from '@/pages/CreatePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,14 +75,19 @@ const router = createRouter({
       ],
     },
     {
-      path: '/app/board',
+      path: '/app/',
       name: 'dashboard',
       component: DashboardLayout,
       children: [
         {
-          path: '',
+          path: 'board',
           name: 'board',
           component: Board,
+        },
+        {
+          path: 'create',
+          name: 'create',
+          component: CreatePage,
         },
       ],
     },
