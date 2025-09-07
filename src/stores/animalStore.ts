@@ -23,14 +23,14 @@ export interface IAnimal {
   status: 'active' | 'archived'
 }
 interface IAnimalRequest {
-  name: String
-  breed: Object
-  animaltype: Object
+  name: string
+  breed: object
+  animaltype: object
   birthDate: Date
   isSterilized: boolean
-  avatar: String
+  avatar: string
   gender: Gender
-  chipId: String
+  chipId: string
 }
 const useAnimalStore = defineStore('animal', () => {
   // --- state ---
