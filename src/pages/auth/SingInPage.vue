@@ -13,7 +13,7 @@ const schema = z.object({
     .string()
     .min(6, 'Password is too short')
     .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).*$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/,
       'Password must have one lowercase letter, oner uppercase letter, one secial symbol ( _ - . $ % ! @ ) and one digit',
     ),
 })
