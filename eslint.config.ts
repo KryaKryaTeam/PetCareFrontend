@@ -10,6 +10,7 @@ import pluginVitest from '@vitest/eslint-plugin'
 import pluginCypress from 'eslint-plugin-cypress'
 import pluginOxlint from 'eslint-plugin-oxlint'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+//@ts-expect-error-error
 import pluginValidateFilename from 'eslint-plugin-validate-filename'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
