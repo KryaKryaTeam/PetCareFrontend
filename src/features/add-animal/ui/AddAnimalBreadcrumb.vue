@@ -21,7 +21,7 @@ const STEP_COLORS = {
 
 export type steps_key = 'selectAnimalType' | 'selectBreed' | 'setGeneralInfo'
 
-const steps = ['selectAnimalType', 'selectBreed', 'setGeneralInfo']
+export const steps: steps_key[] = ['selectAnimalType', 'selectBreed', 'setGeneralInfo']
 
 function formatStepName(name: string) {
   return name.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())
