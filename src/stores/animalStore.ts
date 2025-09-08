@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, toRaw } from 'vue'
 import useUserStore from './userStore'
 import { makeRequest } from '@/shared/utils/networking/makeRequest'
 type Gender = 'male' | 'unknow' | 'female'
@@ -98,12 +98,24 @@ const useAnimalStore = defineStore('animal', () => {
 
     AnimalList.value.set(res.animal._id, res.animal)
   }
+
+  function getArchivedAnimalList(){
+    const ArchivedList = new Set()
+
+    for(const animal of AnimalList.value.entries()){
+      if(animal[1].status === 'archived'){
+           ArchivedList.add(toRaw(animal[1]))
+      }
+    }
+    return ArchivedList
+  }
   return {
     AnimalList,
     getAnimalList,
     deleteAnimal,
     createAnimal,
     changeAnimalStatus,
+    getArchivedAnimalList
   }
 })
 

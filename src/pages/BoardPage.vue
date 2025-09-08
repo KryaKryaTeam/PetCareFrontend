@@ -7,12 +7,12 @@ import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import useUserStore from '@/stores/userStore'
 
+
 const animal = useAnimalStore()
 const user = useUserStore()
 const { AnimalList } = storeToRefs(animal)
 onMounted(async () => {
   await animal.getAnimalList()
-  console.log(AnimalList.value)
 })
 </script>
 

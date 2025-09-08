@@ -11,7 +11,7 @@ import MainToListing from '@/pages/redirects/MainToListing.vue'
 import ListingLayout from '@/pages/layouts/ListingLayout.vue'
 import AuthLayout from '@/pages/layouts/AuthLayout.vue'
 import DashboardLayout from '@/pages/layouts/DashboardLayout.vue'
-import CreatePage from '@/pages/CreatePage.vue'
+import ArchivePage from '@/pages/ArchivePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -85,10 +85,10 @@ const router = createRouter({
           component: Board,
         },
         {
-          path: 'create',
-          name: 'create',
-          component: CreatePage,
-        },
+          path: 'archived',
+          name: 'archived',
+          component: ArchivePage
+        }
       ],
     },
     {

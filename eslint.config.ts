@@ -7,7 +7,6 @@ import pluginVue from 'eslint-plugin-vue'
 import pluginVitest from '@vitest/eslint-plugin'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import pluginCypress from 'eslint-plugin-cypress'
 import pluginOxlint from 'eslint-plugin-oxlint'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import pluginValidateFilename from 'eslint-plugin-validate-filename'
@@ -32,11 +31,6 @@ export default defineConfigWithVueTs(
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
-
-  {
-    ...pluginCypress.configs.recommended,
-    files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}'],
-  },
   {
     plugins: {
       'validate-filename': pluginValidateFilename,
@@ -48,7 +42,7 @@ export default defineConfigWithVueTs(
           rules: [
             {
               case: 'pascal',
-              target: '**/src/*/**/*.{ts,mts,tsx,vue}',
+              target: '**/src/*/**/*.{ vue }',
               excludes: [''],
             },
           ],
