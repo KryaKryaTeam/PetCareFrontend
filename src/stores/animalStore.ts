@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import useUserStore from './userStore'
+import { ref, toRaw } from 'vue'
+import useUserStore from '@/stores/UserStore'
 import { makeRequest } from '@/shared/utils/networking/makeRequest'
 type Gender = 'male' | 'unknow' | 'female'
 export interface IAnimal {
@@ -32,6 +32,8 @@ interface IAnimalRequest {
   gender: Gender
   chipId: String
 }
+
+type filterParamType = 'archived' | 'dog'
 const useAnimalStore = defineStore('animal', () => {
   // --- state ---
   const AnimalList = ref<Map<string, IAnimal>>(new Map())
@@ -97,13 +99,34 @@ const useAnimalStore = defineStore('animal', () => {
     }, 3)
 
     AnimalList.value.set(res.animal._id, res.animal)
+
+  
   }
+  function getFiltredAnimalList(filterParam: filterParamType) {
+    const FiltredList = new Set()
+    if (filterParam === 'archived') {
+      for (const animal of AnimalList.value.entries()) {
+        if (animal[1].status === 'archived') {
+          FiltredList.add(toRaw(animal[1]))
+        }
+      }
+    } else {
+      for (const animal of AnimalList.value.entries()) {
+        if (animal[1].animalType === filterParam) {
+          FiltredList.add(toRaw(animal[1]))
+        }
+      }
+      return FiltredList
+    }
+  }
+
   return {
     AnimalList,
     getAnimalList,
     deleteAnimal,
     createAnimal,
     changeAnimalStatus,
+    getFiltredAnimalList,
   }
 })
 
