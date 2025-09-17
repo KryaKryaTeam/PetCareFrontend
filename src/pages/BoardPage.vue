@@ -8,12 +8,9 @@ import { onMounted, watchEffect } from 'vue'
 import useUserStore from '@/stores/userStore'
 import SelectSection from '@/widget/animal_board/SelectSection.vue'
 
-
-
 const filtredList = storeToRefs(useAnimalStore()).FiltredAnimalList
 const animal = useAnimalStore()
 const user = useUserStore()
-
 
 onMounted(async () => {
   await animal.getAnimalList()

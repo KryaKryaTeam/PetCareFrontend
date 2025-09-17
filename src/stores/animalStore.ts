@@ -33,7 +33,7 @@ interface IAnimalRequest {
   gender: Gender
   chipId: String
 }
-
+export type SearchTypes = "animaltype" | 'breed'
 export type filterParamType = 'archived' | 'dog'
 const useAnimalStore = defineStore('animal', () => {
   // --- stores ---
@@ -41,10 +41,9 @@ const useAnimalStore = defineStore('animal', () => {
   // --- state ---
   const AnimalList = ref<Map<string, IAnimal>>(new Map())
   const FiltredAnimalList = computed((): Set<IAnimal> => {
-  if (!activeLabel.value) return new Set<IAnimal>()
-  return getFiltredAnimalList(activeLabel.value.param)
-})
-
+    if (!activeLabel.value) return new Set<IAnimal>()
+    return getFiltredAnimalList(activeLabel.value.param)
+  })
 
   // --- actions ---
   async function getAnimalList() {
@@ -61,7 +60,6 @@ const useAnimalStore = defineStore('animal', () => {
     res.animals.forEach((element) => {
       AnimalList.value.set(element._id, element)
     })
-    console.log(res.animals)
   }
 
   async function deleteAnimal(id: string) {
@@ -107,29 +105,40 @@ const useAnimalStore = defineStore('animal', () => {
 
     AnimalList.value.set(res.animal._id, res.animal)
   }
-function getFiltredAnimalList(filterParam: any): Set<IAnimal> {
-  const FiltredList = new Set<IAnimal>()
-
-  if (filterParam === 'archived') {
-    for (const [_, animal] of AnimalList.value.entries()) {
-      if (animal.status === 'archived') {
-        FiltredList.add(toRaw(animal))
-      }
-    }
-  } else {
-    for (const [_, animal] of AnimalList.value.entries()) {
-      if (animal.animalType === filterParam) {
-        FiltredList.add(toRaw(animal))
-      }
-    }
+  function getAllParamsList(): Set<any>{
+    const ParamsList =  new Set();
+     for(const [_, animal] of AnimalList.value.entries()){
+        if(ParamsList.has(animal.animalType)){
+          continue
+        } else{
+          ParamsList.add(animal.animalType)
+        }
+     }
+     return ParamsList
   }
+  function getFiltredAnimalList(filterParam: any): Set<IAnimal> {
+    const FiltredList = new Set<IAnimal>()
 
-  return FiltredList
-}
+    if (filterParam === 'archived') {
+      for (const [_, animal] of AnimalList.value.entries()) {
+        if (animal.status === 'archived') {
+          FiltredList.add(toRaw(animal))
+        }
+      }
+    } else {
+      for (const [_, animal] of AnimalList.value.entries()) {
+        if (animal.animalType === filterParam) {
+          FiltredList.add(toRaw(animal))
+        }
+      }
+    }
 
+    return FiltredList
+  }
 
   return {
     AnimalList,
+    getAllParamsList,
     FiltredAnimalList,
     getAnimalList,
     deleteAnimal,

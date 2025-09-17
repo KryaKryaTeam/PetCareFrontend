@@ -7,20 +7,24 @@ const LabelListeners = useLabelBoardObserver()
 const { text, active, id } = defineProps({
   text: { type: String, default: '' },
   active: { type: Boolean, default: false },
-  id: Number
+  id: Number,
 })
 
 // On setup, add listener to store (only once)
-LabelListeners.addListener({ id, param: text,state: active })
+LabelListeners.addListener({ id, param: text, state: active })
 
 // Reactive computed to find listener by id from the store
 const listener = computed(() => {
-  return LabelListeners.listeners.find(l => l.id === id) || { id, state: false }
+  return LabelListeners.listeners.find((l) => l.id === id) || { id, state: false }
 })
 
 function clicked() {
   if (listener.value) {
-    LabelListeners.updateListeners({ id: listener.value.id, state: !listener.value.state, param: text })
+    LabelListeners.updateListeners({
+      id: listener.value.id,
+      state: !listener.value.state,
+      param: text,
+    })
   }
 }
 </script>
