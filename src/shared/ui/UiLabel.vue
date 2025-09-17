@@ -1,25 +1,34 @@
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits } from 'vue'
+import useLabelBoardObserver from '@/features/Observer/LabelBoardObserver'
+import { computed, defineProps } from 'vue'
 
-const { text, active } = defineProps({
+const LabelListeners = useLabelBoardObserver()
+
+const { text, active, id } = defineProps({
   text: { type: String, default: '' },
   active: { type: Boolean, default: false },
+  id: Number
 })
-const emit = defineEmits(['selected', 'unselected'])
-const state = ref(active)
+
+// On setup, add listener to store (only once)
+LabelListeners.addListener({ id, param: text,state: active })
+
+// Reactive computed to find listener by id from the store
+const listener = computed(() => {
+  return LabelListeners.listeners.find(l => l.id === id) || { id, state: false }
+})
 
 function clicked() {
-  if (state.value) {
-    emit('unselected')
-  } else {
-    emit('selected')
+  if (listener.value) {
+    LabelListeners.updateListeners({ id: listener.value.id, state: !listener.value.state, param: text })
   }
-  state.value = !state.value
 }
 </script>
+
 <template>
-  <button :class="['label', { active: state }]" @click="clicked">{{ text }}</button>
+  <button :class="['label', { active: listener.state }]" @click="clicked">{{ text }}</button>
 </template>
+
 <style lang="css" scoped>
 .label {
   width: max-content;

@@ -1,36 +1,30 @@
 <script setup lang="ts">
-import useAnimalStore from '@/stores/animalStore'
+import useAnimalStore, { type IAnimal } from '@/stores/animalStore'
 
 import AddAnimalCard from '@/widget/animal_board/AddAnimalCard.vue'
 import PetCard from '@/widget/animal_board/PetCard.vue'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import { onMounted, watchEffect } from 'vue'
 import useUserStore from '@/stores/userStore'
 import SelectSection from '@/widget/animal_board/SelectSection.vue'
 
+
+
+const filtredList = storeToRefs(useAnimalStore()).FiltredAnimalList
 const animal = useAnimalStore()
 const user = useUserStore()
-const { AnimalList } = storeToRefs(animal)
+
+
 onMounted(async () => {
   await animal.getAnimalList()
-  console.log(AnimalList.value)
+})
+watchEffect(() => {
+  console.log(filtredList.value)
 })
 </script>
-
 <template>
   <SelectSection />
   <h2 class="welcome_title">Welcome, {{ user.profile ? user.profile.username : 'user' }}!</h2>
-  <div class="grid">
-    <PetCard
-      v-for="(pet, index) in AnimalList.values()"
-      :key="index"
-      :_id="pet._id"
-      :name="pet.name"
-      :status="pet.status"
-      :avatar="pet.avatar"
-    />
-    <AddAnimalCard />
-  </div>
 </template>
 
 <style lang="css" scoped>
