@@ -33,7 +33,7 @@ interface IAnimalRequest {
   gender: Gender
   chipId: String
 }
-export type SearchTypes = "animaltype" | 'breed'
+export type SearchTypes = 'animaltype' | 'breed'
 export type filterParamType = 'archived' | 'dog'
 const useAnimalStore = defineStore('animal', () => {
   // --- stores ---
@@ -105,17 +105,10 @@ const useAnimalStore = defineStore('animal', () => {
 
     AnimalList.value.set(res.animal._id, res.animal)
   }
-  function getAllParamsList(): Set<any>{
-    const ParamsList =  new Set();
-     for(const [_, animal] of AnimalList.value.entries()){
-        if(ParamsList.has(animal.animalType)){
-          continue
-        } else{
-          ParamsList.add(animal.animalType)
-        }
-     }
-     return ParamsList
-  }
+  function getAllParamsList(): Set<string> {
+  return new Set([...AnimalList.value.values()].map(animal => animal.animalType))
+}
+
   function getFiltredAnimalList(filterParam: any): Set<IAnimal> {
     const FiltredList = new Set<IAnimal>()
 

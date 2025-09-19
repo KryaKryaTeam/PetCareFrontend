@@ -4,17 +4,35 @@
       <UiLabel text="active" :active="true" :id="1" />
 
       <UiLabel text="archived" :id="2" />
-      <span v-for="(param, index) in [...params.entries()]" :key="index">
+
+
+      <UiLabel v-if="loading" text="loading" :id="3" />
+
+
+      <span v-else v-for="(param, index) in [...params.entries()]" :key="index">
         <UiLabel :text="param[1]" :id="index + 3" />
       </span>
+
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import UiLabel from '@/shared/ui/UiLabel.vue'
-import useAnimalStore from '@/stores/animalStore';
-const animal = useAnimalStore();
 
-const params = animal.getAllParamsList();
-console.log([...params.entries()])
+import useAnimalStore from '@/stores/animalStore'
+import { useUiStore } from '@/stores/uiStateStore';
+import { storeToRefs } from 'pinia';
+import { ref, watch, watchEffect } from 'vue';
+const animal = useAnimalStore()
+const loading = storeToRefs(useUiStore()).loadingSelect
+const params = ref<Set<string> | null>(null)
+
+watchEffect(
+  () => {
+      params.value = animal.getAllParamsList()
+      console.log([...params.value.entries()])
+    }
+)
+
+
 </script>

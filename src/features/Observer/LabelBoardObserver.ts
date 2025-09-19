@@ -34,12 +34,16 @@ const useLabelBoardObserver = defineStore('label', () => {
   function clearStore() {
     listeners.value = []
   }
+  function clearLisner(id: number) {
+    listeners.value = listeners.value.filter((el) => el.id !== id)
+  }
   return {
     listeners,
     activeListener,
     addListener,
     updateListeners,
     clearStore,
+    clearLisner
   }
 })
 export default useLabelBoardObserver

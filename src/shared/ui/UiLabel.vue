@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useLabelBoardObserver from '@/features/Observer/LabelBoardObserver'
-import { computed, defineProps } from 'vue'
+import { computed, defineProps, onUnmounted, useAttrs } from 'vue'
 
 const LabelListeners = useLabelBoardObserver()
 
@@ -9,7 +9,8 @@ const { text, active, id } = defineProps({
   active: { type: Boolean, default: false },
   id: Number,
 })
-
+const attrs = useAttrs()
+const isDisabled = computed(() => !!attrs.disabled)
 // On setup, add listener to store (only once)
 LabelListeners.addListener({ id, param: text, state: active })
 
@@ -27,10 +28,14 @@ function clicked() {
     })
   }
 }
+
+onUnmounted(() => {
+  LabelListeners.clearLisner(id)
+})
 </script>
 
 <template>
-  <button :class="['label', { active: listener.state }]" @click="clicked">{{ text }}</button>
+  <button  :disabled="isDisabled" :class="['label', { active: listener.state }]" @click="clicked">{{ text }}</button>
 </template>
 
 <style lang="css" scoped>
