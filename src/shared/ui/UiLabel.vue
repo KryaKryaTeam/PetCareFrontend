@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useLabelBoardObserver from '@/features/Observer/LabelBoardObserver'
-import { computed, defineProps, onUnmounted, useAttrs } from 'vue'
+import  { computed, defineProps, onMounted, onUnmounted, useAttrs } from 'vue'
 
 const LabelListeners = useLabelBoardObserver()
 
@@ -12,7 +12,7 @@ const { text, active, id } = defineProps({
 const attrs = useAttrs()
 const isDisabled = computed(() => !!attrs.disabled)
 // On setup, add listener to store (only once)
-LabelListeners.addListener({ id, param: text, state: active })
+
 
 // Reactive computed to find listener by id from the store
 const listener = computed(() => {
@@ -28,31 +28,43 @@ function clicked() {
     })
   }
 }
-
+onMounted(() => {
+  LabelListeners.addListener({ id, param: text, state: active })
+})
 onUnmounted(() => {
   LabelListeners.clearLisner(id)
 })
 </script>
 
 <template>
-  <button  :disabled="isDisabled" :class="['label', { active: listener.state }]" @click="clicked">{{ text }}</button>
+  <button :disabled="isDisabled" :class="['label', { active: listener.state }]" @click="clicked">
+    {{ text }}
+  </button>
 </template>
 
 <style lang="css" scoped>
+button{
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
 .label {
+  margin-right: 0.6vw;
   width: max-content;
   height: 25px;
   padding: 0 20px;
-  background: #aeaeb2;
-  border-radius: 12px;
+  border-color: #514F4D;
+  border: 2px solid;
+  border-radius: 5px;
   font-family: 'Montserrat';
-  line-height: 25px;
+  line-height: 170%;
   font-weight: 500;
   letter-spacing: 5%;
   font-size: 10px;
-  color: #ffffff;
+  color: #514F4D;
 }
 .label.active {
-  background: #29b4c2;
+  color: #ffffff;
+  background: #209AA6;
 }
 </style>

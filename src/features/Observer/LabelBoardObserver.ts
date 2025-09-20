@@ -1,10 +1,9 @@
-import type { filterParamType } from '@/stores/animalStore'
 import { defineStore } from 'pinia'
 import { computed, ref, toRaw } from 'vue'
 
 interface IListener {
   id: number
-  param: filterParamType
+  param: string
   state: boolean
 }
 
@@ -43,7 +42,7 @@ const useLabelBoardObserver = defineStore('label', () => {
     addListener,
     updateListeners,
     clearStore,
-    clearLisner
+    clearLisner,
   }
 })
 export default useLabelBoardObserver

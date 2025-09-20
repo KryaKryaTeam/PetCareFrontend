@@ -34,7 +34,6 @@ interface IAnimalRequest {
   chipId: String
 }
 export type SearchTypes = 'animaltype' | 'breed'
-export type filterParamType = 'archived' | 'dog'
 const useAnimalStore = defineStore('animal', () => {
   // --- stores ---
   const activeLabel = storeToRefs(useLabelBoardObserver()).activeListener
@@ -105,9 +104,9 @@ const useAnimalStore = defineStore('animal', () => {
 
     AnimalList.value.set(res.animal._id, res.animal)
   }
-  function getAllParamsList(): Set<string> {
-  return new Set([...AnimalList.value.values()].map(animal => animal.animalType))
-}
+  function getAllParamsList( ): Set<string> {
+    return new Set([...AnimalList.value.values()].map((animal) => animal.animalType))
+  }
 
   function getFiltredAnimalList(filterParam: any): Set<IAnimal> {
     const FiltredList = new Set<IAnimal>()
@@ -121,7 +120,12 @@ const useAnimalStore = defineStore('animal', () => {
     } else {
       for (const [_, animal] of AnimalList.value.entries()) {
         if (animal.animalType === filterParam) {
-          FiltredList.add(toRaw(animal))
+          if(animal.status !== 'archived') {
+            FiltredList.add(toRaw(animal))
+          } else {
+            continue
+          }
+
         }
       }
     }
