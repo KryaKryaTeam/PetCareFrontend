@@ -104,7 +104,7 @@ const useAnimalStore = defineStore('animal', () => {
 
     AnimalList.value.set(res.animal._id, res.animal)
   }
-  function getAllParamsList( ): Set<string> {
+  function getAllParamsList(): Set<string> {
     return new Set([...AnimalList.value.values()].map((animal) => animal.animalType))
   }
 
@@ -120,12 +120,11 @@ const useAnimalStore = defineStore('animal', () => {
     } else {
       for (const [_, animal] of AnimalList.value.entries()) {
         if (animal.animalType === filterParam) {
-          if(animal.status !== 'archived') {
+          if (animal.status !== 'archived') {
             FiltredList.add(toRaw(animal))
           } else {
             continue
           }
-
         }
       }
     }

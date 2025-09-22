@@ -1,8 +1,7 @@
 <template>
-  <section >
+  <section>
     <div>
       <UiLabel text="active" :active="true" :id="1" />
-
 
       <UiLabel v-if="loading" text="loading" :id="3" />
 
@@ -20,7 +19,7 @@ import UiLabel from '@/shared/ui/UiLabel.vue'
 import useAnimalStore from '@/stores/animalStore'
 import { useUiStore } from '@/stores/uiStateStore'
 import { storeToRefs } from 'pinia'
-import { ref,watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 const animal = useAnimalStore()
 const loading = storeToRefs(useUiStore()).loadingSelect
 const params = ref<Set<string> | null>(null)

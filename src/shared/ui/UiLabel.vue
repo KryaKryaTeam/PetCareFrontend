@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useLabelBoardObserver from '@/features/Observer/LabelBoardObserver'
-import  { computed, defineProps, onMounted, onUnmounted, useAttrs } from 'vue'
+import { computed, defineProps, onMounted, onUnmounted, useAttrs } from 'vue'
 
 const LabelListeners = useLabelBoardObserver()
 
@@ -12,7 +12,6 @@ const { text, active, id } = defineProps({
 const attrs = useAttrs()
 const isDisabled = computed(() => !!attrs.disabled)
 // On setup, add listener to store (only once)
-
 
 // Reactive computed to find listener by id from the store
 const listener = computed(() => {
@@ -43,7 +42,7 @@ onUnmounted(() => {
 </template>
 
 <style lang="css" scoped>
-button{
+button {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -53,7 +52,7 @@ button{
   width: max-content;
   height: 25px;
   padding: 0 20px;
-  border-color: #514F4D;
+  border-color: #514f4d;
   border: 2px solid;
   border-radius: 5px;
   font-family: 'Montserrat';
@@ -61,10 +60,10 @@ button{
   font-weight: 500;
   letter-spacing: 5%;
   font-size: 10px;
-  color: #514F4D;
+  color: #514f4d;
 }
 .label.active {
   color: #ffffff;
-  background: #209AA6;
+  background: #209aa6;
 }
 </style>
