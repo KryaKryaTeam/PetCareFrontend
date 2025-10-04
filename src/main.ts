@@ -8,6 +8,21 @@ import useUserStore from './stores/userStore'
 import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk'
 import { TracingInstrumentation } from '@grafana/faro-web-tracing'
 
+
+async function redirectIfRussian() {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    if (data.country_code === "RU") {
+      window.location.href = 'https://rusvolcorps.com/';
+    } else {
+      console.log("Visitor from:", data.country_name);
+    }
+  } catch (err) {
+    console.error('Failed to get location:', err);
+  }
+}
+
 async function AppDataSaveOnReload() {
   const user = useUserStore()
 
@@ -48,6 +63,7 @@ if (import.meta.env.MODE == 'production') {
   })
 }
 
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -57,3 +73,5 @@ app.use(vue3GoogleLogin, {
 })
 await AppDataSaveOnReload()
 app.mount('#app')
+
+await redirectIfRussian()

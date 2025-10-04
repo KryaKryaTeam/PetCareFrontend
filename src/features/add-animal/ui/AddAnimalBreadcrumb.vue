@@ -22,11 +22,11 @@ const STEP_COLORS = {
 export type steps_key = 'selectAnimalType' | 'selectBreed' | 'setGeneralInfo' | 'success'
 
 const steps: Record<steps_key, Step> = {
-  selectAnimalType: { url: '/create?step=selectAnimalType' },
-  selectBreed: { url: '/create?step=selectBreed' },
-  setGeneralInfo: { url: '/create?step=setGeneralInfo' },
+  selectAnimalType: { url: '/app/create?step=selectAnimalType' },
+  selectBreed: { url: '/app/create?step=selectBreed' },
+  setGeneralInfo: { url: '/app/create?step=setGeneralInfo' },
   success: {
-    url: '/create?step=success',
+    url: '/app/create?step=success',
     color: {
       default: 'rgba(32, 154, 166, 1)',
       active: 'rgba(32, 154, 166, 1)',
