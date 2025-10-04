@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import CreateCard from '@/shared/ui/createCard.vue'
+import SelectSection from '@/widget/animal_board/SelectSection.vue'
 </script>
 
 <template>
-  <CreateCard id="1" name="abobus" type="dog" />
+  <SelectSection />
 </template>
 
 <style scoped></style>

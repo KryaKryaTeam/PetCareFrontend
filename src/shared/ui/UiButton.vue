@@ -11,7 +11,10 @@ const { disabled, fullWidth, type_ } = defineProps({
   topPadding: { type: Number, default: 20 },
 })
 const isDefualt = computed(() => {
-  return type_ == 'default' || (type_ != 'destructive' && type_ != 'outline' && type_ != 'default')
+  return (
+    type_ == 'default' ||
+    (type_ != 'destructive' && type_ != 'outline' && type_ != 'default' && type_ != 'unactive')
+  )
 })
 const isDestructive = computed(() => {
   return type_ == 'destructive'
